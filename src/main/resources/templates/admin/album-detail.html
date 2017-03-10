@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard v.2</title>
+    <!-- maincss -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- pluginscss -->
+    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+    <link href="../css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="../css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+    <link href="../css/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="../css/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link href="../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="../img/profile_small.jpg" />
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="dashboard_2.html#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">管理员</strong>
+                             </span> </span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="dashboard.html"><i class="fa fa-th-large"></i> <span class="nav-label">控制台</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-file-word-o"></i> <span class="nav-label"> 文章管理</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="article-category.html">分类管理</a></li>
+                            <li><a href="article-list.html">文章列表</a></li>
+                            <li><a href="article-edit.html">新增文章</a></li>
+                            <li><a href="article-tag.html">标签管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label"> 相册管理</span> <span class="fa arrow"></span> </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class="active"><a href="album-list.html">相册列表</a></li>
+                            <li><a href="album-tag.html">标签管理</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="user.html"><i class="fa fa-user"></i> <span class="nav-label"> 用户管理</span></a>
+                    </li>
+                    <li>
+                        <a href="message.html"><i class="fa fa-comments-o"></i> <span class="nav-label"> 留言管理</span></a>
+                    </li>
+                    <li>
+                        <a href="system-set.html"><i class="fa fa-cog"></i> <span class="nav-label"> 系统设置</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- suspend -->
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
+                        </li>
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i>退出
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <h2>冬去春又至</h2>
+                                <p>
+                                    寒冷而漫长的冬天终于过去了，春天的第一缕暖阳照耀大地万物生机。闻着春天的气息，感受到了春天的惬意。一年之计在于春，春天代表着希望，代表着生机。同样的春天，同样的季节，又有多少脆弱的生命经不起寒冬的考验，等不到春天的第一缕暖阳。季节在不停的循环，生命却无法紧跟季节的脚步。我们唯一能做的就是在有限的生命中无限的努力和付出用胜利来诠释我们存在的价值。
+                                </p>
+                                <div class="lightBoxGallery">
+                                    <a href="img/gallery/1.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/1s.jpg"></a>
+                                    <a href="img/gallery/2.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/2s.jpg"></a>
+                                    <a href="img/gallery/3.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/3s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/6.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/6s.jpg"></a>
+                                    <a href="img/gallery/7.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/7s.jpg"></a>
+                                    <a href="img/gallery/8.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/8s.jpg"></a>
+                                    <a href="img/gallery/9.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/9s.jpg"></a>
+                                    <a href="img/gallery/10.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/10s.jpg"></a>
+                                    <a href="img/gallery/12.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/12s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/6.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/6s.jpg"></a>
+                                    <a href="img/gallery/7.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/7s.jpg"></a>
+                                    <a href="img/gallery/2.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/2s.jpg"></a>
+                                    <a href="img/gallery/3.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/3s.jpg"></a>
+                                    <a href="img/gallery/1.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/1s.jpg"></a>
+                                    <a href="img/gallery/9.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/9s.jpg"></a>
+                                    <a href="img/gallery/10.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/10s.jpg"></a>
+                                    <a href="img/gallery/11.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/11s.jpg"></a>
+                                    <a href="img/gallery/12.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/12s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/6.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/6s.jpg"></a>
+                                    <a href="img/gallery/12.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/12s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/10.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/10s.jpg"></a>
+                                    <a href="img/gallery/1.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/1s.jpg"></a>
+                                    <a href="img/gallery/2.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/2s.jpg"></a>
+                                    <a href="img/gallery/3.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/3s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/6.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/6s.jpg"></a>
+                                    <a href="img/gallery/7.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/7s.jpg"></a>
+                                    <a href="img/gallery/8.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/8s.jpg"></a>
+                                    <a href="img/gallery/9.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/9s.jpg"></a>
+                                    <a href="img/gallery/10.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/10s.jpg"></a>
+                                    <a href="img/gallery/11.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/11s.jpg"></a>
+                                    <a href="img/gallery/12.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/12s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/6.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/6s.jpg"></a>
+                                    <a href="img/gallery/7.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/7s.jpg"></a>
+                                    <a href="img/gallery/2.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/2s.jpg"></a>
+                                    <a href="img/gallery/3.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/3s.jpg"></a>
+                                    <a href="img/gallery/1.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/1s.jpg"></a>
+                                    <a href="img/gallery/9.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/9s.jpg"></a>
+                                    <a href="img/gallery/10.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/10s.jpg"></a>
+                                    <a href="img/gallery/11.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/11s.jpg"></a>
+                                    <a href="img/gallery/12.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/12s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/7.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/7s.jpg"></a>
+                                    <a href="img/gallery/8.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/8s.jpg"></a>
+                                    <a href="img/gallery/9.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/9s.jpg"></a>
+                                    <a href="img/gallery/10.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/10s.jpg"></a>
+                                    <a href="img/gallery/11.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/11s.jpg"></a>
+                                    <a href="img/gallery/12.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/12s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/6.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/6s.jpg"></a>
+                                    <a href="img/gallery/12.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/12s.jpg"></a>
+                                    <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/4s.jpg"></a>
+                                    <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/5s.jpg"></a>
+                                    <a href="img/gallery/10.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/10s.jpg"></a>
+                                    <a href="img/gallery/11.jpg" title="Image from Unsplash" data-gallery=""><img src="../img/gallery/11s.jpg"></a>
+                                    <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+                                    <div id="blueimp-gallery" class="blueimp-gallery">
+                                        <div class="slides"></div>
+                                        <h3 class="title"></h3>
+                                        <a class="prev">‹</a>
+                                        <a class="next">›</a>
+                                        <a class="close">×</a>
+                                        <a class="play-pause"></a>
+                                        <ol class="indicator"></ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="small-chat">
+                <!-- <span class="badge badge-warning pull-right">5</span> -->
+                <a class="open-small-chat" data-toggle="modal" data-target="#addAlbum">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
+            <!-- modal -->
+            <div class="modal inmodal fade" id="addAlbum" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">上传图片</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Dropzone -->
+                            <form action="http://www.me/anm-front/uploads.php" class="dropzone" id="dropzone"></form>
+                            <!-- Dropzone -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    function editAlbum(id) {
+        console.log(id)
+        $('#editAlbum').modal("show");
+    }
+    </script>
+    <!-- Mainly scripts -->
+    <script src="../js/jquery-2.1.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- iCheck -->
+    <script src="../js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+    </script>
+    <!-- dropzone -->
+    <script src="../js/plugins/dropzone/dropzone.js"></script>
+</body>
+
+</html>

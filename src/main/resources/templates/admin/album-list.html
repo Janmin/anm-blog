@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard v.2</title>
+    <!-- maincss -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- pluginscss -->
+    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+    <link href="../css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="../css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+    <link href="../css/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="../css/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link href="../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="../img/profile_small.jpg" />
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="dashboard_2.html#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">管理员</strong>
+                             </span> </span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="dashboard.html"><i class="fa fa-th-large"></i> <span class="nav-label">控制台</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-file-word-o"></i> <span class="nav-label"> 文章管理</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="article-category.html">分类管理</a></li>
+                            <li><a href="article-list.html">文章列表</a></li>
+                            <li><a href="article-edit.html">新增文章</a></li>
+                            <li><a href="article-tag.html">标签管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label"> 相册管理</span> <span class="fa arrow"></span> </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class="active"><a href="album-list.html">相册列表</a></li>
+                            <li><a href="album-tag.html">标签管理</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="user.html"><i class="fa fa-user"></i> <span class="nav-label"> 用户管理</span></a>
+                    </li>
+                    <li>
+                        <a href="message.html"><i class="fa fa-comments-o"></i> <span class="nav-label"> 留言管理</span></a>
+                    </li>
+                    <li>
+                        <a href="system-set.html"><i class="fa fa-cog"></i> <span class="nav-label"> 系统设置</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- suspend -->
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
+                        </li>
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i>退出
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="javascript:editAlbum('1')" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ibox">
+                            <div class="ibox-content product-box">
+                                <div class="product-imitation">
+                                    <img alt="image" class="img-responsive" src="../img/p_big3.jpg">
+                                </div>
+                                <div class="product-desc">
+                                    <span class="product-price">
+                                    冬去春又至
+                                </span>
+                                    <small class="text-muted">标签1</small>
+                                    <small class="text-muted">标签2</small>
+                                    <small class="text-muted">标签3</small>
+                                    <!-- <a href="#" class="product-name">分类：随感</a> -->
+                                    <div class="small m-t-xs">
+                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                    </div>
+                                    <div class="m-t text-righ">
+                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i class="fa fa-folder-open-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-success">编辑 <i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i class="fa fa-trash-o"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Large Modal</button> -->
+                </div>
+            </div>
+            <div id="small-chat">
+                <!-- <span class="badge badge-warning pull-right">5</span> -->
+                <a class="open-small-chat" data-toggle="modal" data-target="#addAlbum">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
+            <!-- modal -->
+            <div class="modal inmodal fade" id="addAlbum" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">新建相册</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">相册名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">相册简介</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">相册标签</label>
+                                    <div class="col-sm-10">
+                                        <label class="checkbox-inline i-checks">
+                                            <input type="checkbox" value="option1">青春</label>
+                                        <label class="checkbox-inline i-checks">
+                                            <input type="checkbox" value="option2">废话</label>
+                                        <label class="checkbox-inline i-checks">
+                                            <input type="checkbox" value="option3">大笑</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+            <div class="modal inmodal fade" id="editAlbum" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">编辑相册</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">相册名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">相册简介</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">相册标签</label>
+                                    <div class="col-sm-10">
+                                        <label class="checkbox-inline i-checks">
+                                            <input type="checkbox" value="option1">青春</label>
+                                        <label class="checkbox-inline i-checks">
+                                            <input type="checkbox" value="option2">废话</label>
+                                        <label class="checkbox-inline i-checks">
+                                            <input type="checkbox" value="option3">大笑</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    function editAlbum(id) {
+        console.log(id)
+        $('#editAlbum').modal("show");
+    }
+    </script>
+    <!-- Mainly scripts -->
+    <script src="../js/jquery-2.1.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- iCheck -->
+    <script src="../js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+    </script>
+</body>
+
+</html>

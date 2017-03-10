@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard v.2</title>
+    <!-- maincss -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <!-- pluginscss -->
+    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/blueimp/css/blueimp-gallery.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/summernote/summernote.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/summernote/summernote-bs3.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/dropzone/basic.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/dropzone/dropzone.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div th:fragment="script">
+    <!-- Mainly scripts -->
+    <script th:src="@{/js/jquery-2.1.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    <script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+    <!-- Custom and plugin javascript -->
+    <script th:src="@{/js/inspinia.js}"></script>
+    <script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+    <!-- jQuery UI -->
+    <script th:src="@{/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
+</div>
+</body>
+</html>
