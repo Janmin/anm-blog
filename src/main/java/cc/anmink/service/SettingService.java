@@ -14,5 +14,5 @@ public interface SettingService {
 
     SysSetting getById();
 
-    int update(String count_code, String copy_right, String description, String icp, Integer site_status, Long id);
+    int updateAllById(String count_code, String copy_right, String description, String icp, Integer site_status, Long id);
 }

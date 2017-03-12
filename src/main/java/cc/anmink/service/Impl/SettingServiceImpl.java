@@ -27,7 +27,7 @@ public class SettingServiceImpl implements SettingService {
     }
 
     @Override
-    public int update(String count_code, String copy_right, String description, String icp, Integer site_status, Long id) {
+    public int updateAllById(String count_code, String copy_right, String description, String icp, Integer site_status, Long id) {
         return sysSettingRepoitory.updateAllById(count_code, copy_right, description, icp, site_status, id);
     }
 
