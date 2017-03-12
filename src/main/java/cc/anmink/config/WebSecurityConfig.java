@@ -30,18 +30,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/**", "/font-awesome/**","/home/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .anyRequest().authenticated()//所有请求需要认证才能访问
+                .antMatchers("/img/**","/api/**", "/font-awesome/**","/home/**","/admin/**").permitAll()
+//                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .anyRequest().authenticated()//其余请求需认证才可访问
                 .and()
-                .formLogin()//定制登陆行为
+                .formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error")
-                .defaultSuccessUrl("/home/index", true)
+                .defaultSuccessUrl("/home", true)
                 .permitAll()//登录页面可任意访问
                 .and()
                 .logout()
-                .permitAll();//定制注销行为，注销请求可任意访问
+                .permitAll();
     }
 
 }

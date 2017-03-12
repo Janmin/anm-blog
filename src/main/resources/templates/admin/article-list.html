@@ -1,24 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard v.2</title>
-    <!-- maincss -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <!-- pluginscss -->
-    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="../css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
-    <link href="../css/plugins/summernote/summernote.css" rel="stylesheet">
-    <link href="../css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
-    <link href="../css/plugins/dropzone/basic.css" rel="stylesheet">
-    <link href="../css/plugins/dropzone/dropzone.css" rel="stylesheet">
-    <link href="../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-</head>
+<head th:include="admin/layout :: head"></head>
 
 <body>
     <div id="wrapper">
@@ -113,9 +96,6 @@
                                     <div class="col-sm-4 m-b-xs">
                                     </div>
                                     <div class="col-sm-3">
-                                        <!-- <div class="input-group">
-                                            <input type="text" placeholder="分类名称" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary">新增</button> </span></div> -->
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -130,47 +110,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>默认</td>
-                                                <td>20</td>
-                                                <td>Jul 14, 2013</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-white btn-xs" type="button">编辑</button>
-                                                        <button class="btn btn-primary btn-xs" type="button">删除</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>随感</td>
-                                                <td>40</td>
-                                                <td>Jul 16, 2013</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-white btn-xs" type="button">编辑</button>
-                                                        <button class="btn btn-primary btn-xs" type="button">删除</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>散文</td>
-                                                <td>75</td>
-                                                <td>Jul 18, 2013</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-white btn-xs" type="button">编辑</button>
-                                                        <button class="btn btn-primary btn-xs" type="button">删除</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>日志</td>
-                                                <td>18</td>
-                                                <td>Jul 22, 2013</td>
+                                            <tr th:each="list,iterStat : ${lists}">
+                                                <td th:text="${list.id}">1</td>
+                                                <td th:text="${list.title}">默认</td>
+                                                <td th:text="${list.category}">20</td>
+                                                <td th:text="${list.created}">Jul 14, 2013</td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <button class="btn btn-white btn-xs" type="button">编辑</button>
@@ -196,16 +140,7 @@
             </div>
         </div>
     </div>
-    <!-- Mainly scripts -->
-    <script src="../js/jquery-2.1.1.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- Custom and plugin javascript -->
-    <script src="../js/inspinia.js"></script>
-    <script src="../js/plugins/pace/pace.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <div th:include="admin/layout :: script"></div>
 </body>
 
 </html>
