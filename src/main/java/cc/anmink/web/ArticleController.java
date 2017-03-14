@@ -1,13 +1,12 @@
 package cc.anmink.web;
 
 import cc.anmink.entity.SysArticle;
-import cc.anmink.entity.SysSetting;
+import cc.anmink.entity.SysArticleCategory;
 import cc.anmink.responese.MyResponse;
 import cc.anmink.service.ArticleService;
 import cc.anmink.service.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,9 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Null;
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +61,22 @@ public class ArticleController {
         return "admin/article-detail";
     }
 
+    //后台文章分类管理页面Controller
+    @RequestMapping("/admin/article/category/list")
+    public String getCategory(Map map) {
+        List<SysArticleCategory> sysArticleCategories= articleService.getAllCategory();
+        map.put("lists", sysArticleCategories);
+        return "admin/article-category";
+    }
+
+    @RequestMapping("/admin/article/category/add")
+    @ResponseBody
+    public MyResponse<SysArticleCategory> addArticleCategory(String name){
+        SysArticleCategory sysArticleCategory = articleService.createCategory(name);
+        return new MyResponse<SysArticleCategory>(200,"success",sysArticleCategory);
+    }
+
+
     @RequestMapping("/admin/test")
     @ResponseBody
     public int getSetting(String count_code, String copy_right, String description, String icp, Integer site_status) {
@@ -72,6 +84,7 @@ public class ArticleController {
         // return sysSetting;
         return settingService.updateAllById(count_code, copy_right, description, icp, site_status, (long) 1);
     }
+
 
     @RequestMapping("/admin/test2")
     @ResponseBody
@@ -84,20 +97,21 @@ public class ArticleController {
     @ResponseBody
     public MyResponse handleFileUpload(@RequestParam("file") MultipartFile file) {
         if (!file.isEmpty()) {
+            String new_file_name = System.currentTimeMillis() + "." + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
             try {
-                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(file.getOriginalFilename())));
+                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File("E:\\WorkSpace\\anm-blog\\src\\main\\resources\\static\\uploads\\" + new_file_name)));
                 out.write(file.getBytes());
                 out.flush();
                 out.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                // return "上传失败," + e.getMessage();
                 return new MyResponse<Null>(400, e.getMessage(), null);
             } catch (IOException e) {
                 e.printStackTrace();
                 return new MyResponse<Null>(400, e.getMessage(), null);
             }
-            return new MyResponse<String>(200, "success", file.getOriginalFilename());
+            String url = "/uploads/" + new_file_name;
+            return new MyResponse<String>(200, "success", url);
         } else {
             return new MyResponse<Null>(400, "fail", null);
         }
