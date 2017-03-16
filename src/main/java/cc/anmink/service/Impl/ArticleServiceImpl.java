@@ -33,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public SysArticle create(String title, String caption_pic, String content, String category, String tag) {
-        Long timestamp = System.currentTimeMillis() / 1000;
+        Long timestamp = System.currentTimeMillis();
         return sysArticleRepository.save(new SysArticle(title, caption_pic, content, category, tag, timestamp));
     }
 
@@ -50,7 +50,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public SysArticleCategory createCategory(String name) {
-        Long timestamp = System.currentTimeMillis() / 1000;
+        Long timestamp = System.currentTimeMillis();
         return sysArticleCategoryRepoitory.save(new SysArticleCategory(name, timestamp));
     }
 }

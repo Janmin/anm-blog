@@ -1,24 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard v.2</title>
-    <!-- maincss -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <!-- pluginscss -->
-    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="../css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
-    <link href="../css/plugins/summernote/summernote.css" rel="stylesheet">
-    <link href="../css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
-    <link href="../css/plugins/dropzone/basic.css" rel="stylesheet">
-    <link href="../css/plugins/dropzone/dropzone.css" rel="stylesheet">
-    <link href="../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-</head>
+<head th:include="admin/layout :: head"></head>
 
 <body>
     <div id="wrapper">
@@ -27,7 +10,7 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="../img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="/img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="dashboard_2.html#">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">管理员</strong>

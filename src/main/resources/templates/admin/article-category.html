@@ -98,9 +98,11 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                        <input type="text" placeholder="分类名称" class="input-sm form-control"/> <span
+                                        <input type="text" placeholder="分类名称" class="input-sm form-control"
+                                               id="cate_name"/> <span
                                             class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary">新增</button> </span></div>
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                                onclick="add_category()">新增</button> </span></div>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -119,7 +121,8 @@
                                         <td th:text="${list.id}">1</td>
                                         <td th:text="${list.name}">默认</td>
                                         <td>20</td>
-                                        <td th:text="${list.created}">Jul 14, 2013</td>
+                                        <td th:text="${#dates.format(list.created, 'yyyy/MM/dd HH:mm')}">Jul 14, 2013
+                                        </td>
                                         <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
                                     </tr>
                                     </tbody>
@@ -141,6 +144,15 @@
     </div>
 </div>
 <div th:include="admin/layout :: script"></div>
+<script>
+    function add_category() {
+        $('#cate_name').val();
+        $.post("http://localhost:8080/admin/article/category/add", {name: $('#cate_name').val()}, function (res) {
+            console.log(res);
+            window.location.reload();
+        });
+    }
+</script>
 </body>
 
 </html>
