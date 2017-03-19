@@ -4,165 +4,116 @@
 <head th:include="admin/layout :: head"></head>
 
 <body>
-    <div id="wrapper">
-        <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="nav-header">
-                        <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="/img/profile_small.jpg" />
-                             </span>
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="dashboard_2.html#">
-                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">管理员</strong>
-                             </span> </span>
-                            </a>
-                        </div>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="admin/layout :: nav ('article','tag')">
+    </nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
                     </li>
                     <li>
-                        <a href="dashboard.html"><i class="fa fa-th-large"></i> <span class="nav-label">控制台</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="#"><i class="fa fa-file-word-o"></i> <span class="nav-label"> 文章管理</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="article-category.html">分类管理</a></li>
-                            <li><a href="article-list.html">文章列表</a></li>
-                            <li><a href="article-edit.html">新增文章</a></li>
-                            <li class="active"><a href="article-tag.html">标签管理</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label"> 相册管理</span> <span class="fa arrow"></span> </a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="album-list.html">相册列表</a></li>
-                            <li><a href="album-tag.html">标签管理</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="user.html"><i class="fa fa-user"></i> <span class="nav-label"> 用户管理</span></a>
-                    </li>
-                    <li>
-                        <a href="message.html"><i class="fa fa-comments-o"></i> <span class="nav-label"> 留言管理</span></a>
-                    </li>
-                    <li>
-                        <a href="system-set.html"><i class="fa fa-cog"></i> <span class="nav-label"> 系统设置</span></a>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i>退出
+                        </a>
                     </li>
                 </ul>
-            </div>
-        </nav>
-        <div id="page-wrapper" class="gray-bg">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                    <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
-                        </li>
-                        <li>
-                            <a href="login.html">
-                                <i class="fa fa-sign-out"></i>退出
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="wrapper wrapper-content">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>标签管理</h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="table_basic.html#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="table_basic.html#">Config option 1</a>
-                                        </li>
-                                        <li><a href="table_basic.html#">Config option 2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>标签管理</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="table_basic.html#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="table_basic.html#">Config option 1</a>
+                                    </li>
+                                    <li><a href="table_basic.html#">Config option 2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-5 m-b-xs">
+                                </div>
+                                <div class="col-sm-4 m-b-xs">
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="标签名称" class="input-sm form-control"
+                                               id="tag-name"/> <span
+                                            class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                                onclick="addTag()">新增</button> </span></div>
                                 </div>
                             </div>
-                            <div class="ibox-content">
-                                <div class="row">
-                                    <div class="col-sm-5 m-b-xs">
-                                    </div>
-                                    <div class="col-sm-4 m-b-xs">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="input-group">
-                                            <input type="text" placeholder="标签名称" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary">新增</button> </span></div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>标签ID</th>
-                                                <th>标签名称</th>
-                                                <th>创建时间</th>
-                                                <th>操作</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>默认</td>
-                                                <td>Jul 14, 2013</td>
-                                                <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>随感</td>
-                                                <td>Jul 16, 2013</td>
-                                                <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>散文</td>
-                                                <td>Jul 18, 2013</td>
-                                                <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>日志</td>
-                                                <td>Jul 22, 2013</td>
-                                                <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>标签ID</th>
+                                        <th>标签名称</th>
+                                        <th>创建时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="list,iterStat : ${lists}">
+                                        <td th:text="${list.id}"></td>
+                                        <td th:text="${list.name}">默认</td>
+                                        <td th:text="${#dates.format(list.created,'yyyy/MM/dd HH:mm')}">Jul 14, 2013
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-white btn-xs" type="button">编辑</button>
+                                                <button class="btn btn-primary btn-xs" type="button">删除</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer">
-                <div class="pull-right">
-                    10GB of <strong>250GB</strong> Free.
-                </div>
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2015
-                </div>
-            </div>
+        </div>
+        <div class="footer" th:include="admin/layout :: footer ('Copyright ANMINK.CC &copy; 2017','苏ICP备656562','')">
         </div>
     </div>
-    <!-- Mainly scripts -->
-    <script src="../js/jquery-2.1.1.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- Custom and plugin javascript -->
-    <script src="../js/inspinia.js"></script>
-    <script src="../js/plugins/pace/pace.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+</div>
+<div th:include="admin/layout :: script"></div>
+<script>
+    function addTag() {
+        $.ajax({
+            url: "http://localhost:8080/api/article/tag/add",
+            type: "POST",
+            data: {name: $("#tag-name").val()},
+            dataType: "json",
+            success: function (data) {
+                if (data.ret == 200) {
+                    window.location.reload();
+                } else {
+                    alert("添加失败，请重试");
+                }
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

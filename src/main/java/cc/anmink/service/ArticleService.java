@@ -2,6 +2,7 @@ package cc.anmink.service;
 
 import cc.anmink.entity.SysArticle;
 import cc.anmink.entity.SysArticleCategory;
+import cc.anmink.entity.SysArticleTag;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,4 +30,13 @@ public interface ArticleService {
 
     //新增分类
     SysArticleCategory createCategory(String name);
+
+    //新增标签
+    SysArticleTag createTag(String name);
+
+    //获取全部标签
+    List<SysArticleTag> getAllTag();
+
+    //根据id删除标签
+    SysArticleTag deleteTagById(Long id);
 }

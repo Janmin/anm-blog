@@ -2,8 +2,10 @@ package cc.anmink.service.Impl;
 
 import cc.anmink.dao.SysArticleCategoryRepoitory;
 import cc.anmink.dao.SysArticleRepoitory;
+import cc.anmink.dao.SysArticleTagRepoitory;
 import cc.anmink.entity.SysArticle;
 import cc.anmink.entity.SysArticleCategory;
+import cc.anmink.entity.SysArticleTag;
 import cc.anmink.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private SysArticleCategoryRepoitory sysArticleCategoryRepoitory;
+
+    @Autowired
+    private SysArticleTagRepoitory sysArticleTagRepoitory;
 
     @Override
     public List<SysArticle> getById(Long id) {
@@ -52,5 +57,23 @@ public class ArticleServiceImpl implements ArticleService {
     public SysArticleCategory createCategory(String name) {
         Long timestamp = System.currentTimeMillis();
         return sysArticleCategoryRepoitory.save(new SysArticleCategory(name, timestamp));
+    }
+
+    @Override
+    public SysArticleTag createTag(String name) {
+        Long timestamp = System.currentTimeMillis();
+        return sysArticleTagRepoitory.save(new SysArticleTag(name, timestamp));
+    }
+
+    @Override
+    public List<SysArticleTag> getAllTag() {
+        return sysArticleTagRepoitory.findAll();
+    }
+
+    @Override
+    public SysArticleTag deleteTagById(Long id) {
+        SysArticleTag sysArticleTag = sysArticleTagRepoitory.findById(id);
+        sysArticleTagRepoitory.delete(sysArticleTag);
+        return sysArticleTag;
     }
 }

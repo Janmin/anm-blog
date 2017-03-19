@@ -2,6 +2,8 @@ package cc.anmink.web;
 
 import cc.anmink.entity.SysArticle;
 import cc.anmink.entity.SysArticleCategory;
+import cc.anmink.entity.SysArticleTag;
+import cc.anmink.entity.SysSetting;
 import cc.anmink.responese.MyResponse;
 import cc.anmink.service.ArticleService;
 import cc.anmink.service.SettingService;
@@ -23,10 +25,16 @@ import java.util.Map;
  */
 @Controller
 public class ArticleController {
+    private SysSetting sysSetting;
     @Autowired
     ArticleService articleService;
     @Autowired
     SettingService settingService;
+
+    @Autowired
+    public void getSetting() {
+        this.sysSetting = settingService.getById();
+    }
 
     //根据id获取单篇文章API
     @RequestMapping("/api/article/get")
@@ -64,16 +72,58 @@ public class ArticleController {
     //后台文章分类管理页面Controller
     @RequestMapping("/admin/article/category/list")
     public String getCategory(Map map) {
-        List<SysArticleCategory> sysArticleCategories= articleService.getAllCategory();
+        List<SysArticleCategory> sysArticleCategories = articleService.getAllCategory();
         map.put("lists", sysArticleCategories);
         return "admin/article-category";
     }
 
     @RequestMapping("/admin/article/category/add")
     @ResponseBody
-    public MyResponse<SysArticleCategory> addArticleCategory(String name){
-        SysArticleCategory sysArticleCategory = articleService.createCategory(name);
-        return new MyResponse<SysArticleCategory>(200,"success",sysArticleCategory);
+    public MyResponse addArticleCategory(String name) {
+        try {
+            SysArticleCategory sysArticleCategory = articleService.createCategory(name);
+            return new MyResponse<SysArticleCategory>(200, "success", sysArticleCategory);
+        } catch (Exception e) {
+            return new MyResponse<Null>(200, "fail", null);
+        }
+    }
+
+    //后台文章标签管理页面
+    @RequestMapping("/admin/article/tag/list")
+    public String articleTagList(Map map) {
+        List<SysArticleTag> sysArticleTags = articleService.getAllTag();
+        map.put("lists", sysArticleTags);
+        return "admin/article-tag";
+    }
+
+    //后台文章标签新增接口
+    @RequestMapping("/api/article/tag/add")
+    @ResponseBody
+    public MyResponse articleTagAdd(String name) {
+        try {
+            SysArticleTag sysArticleTag = articleService.createTag(name);
+            return new MyResponse<SysArticleTag>(200, "success", sysArticleTag);
+        } catch (Exception e) {
+            return new MyResponse<Null>(400, "fail", null);
+        }
+    }
+
+    //后台文章标签新增接口
+    @RequestMapping("/api/article/tag/del")
+    @ResponseBody
+    public MyResponse articleTagDel(Long id) {
+        try {
+            SysArticleTag sysArticleTag = articleService.deleteTagById(id);
+            return new MyResponse<SysArticleTag>(200, "success", sysArticleTag);
+        } catch (Exception e) {
+            return new MyResponse<Null>(400, "fail", null);
+        }
+    }
+
+    @RequestMapping("/admin/article/add")
+    public String articleAdd(Map map) {
+        map.put("setting", this.sysSetting);
+        return "admin/article-add";
     }
 
 

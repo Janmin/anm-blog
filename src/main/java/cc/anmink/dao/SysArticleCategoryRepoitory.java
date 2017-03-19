@@ -1,6 +1,5 @@
 package cc.anmink.dao;
 
-import cc.anmink.entity.SysArticle;
 import cc.anmink.entity.SysArticleCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 

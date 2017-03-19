@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="head">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dashboard v.2</title>
+    <title>ANM Dashbord</title>
     <!-- maincss -->
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
@@ -17,10 +18,68 @@
     <link th:href="@{/css/plugins/dropzone/basic.css}" rel="stylesheet"/>
     <link th:href="@{/css/plugins/dropzone/dropzone.css}" rel="stylesheet"/>
     <link th:href="@{/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet"/>
-
 </head>
-<body>
 
+<body>
+<!--nav-->
+<nav class="navbar-default navbar-static-side" role="navigation" th:fragment="nav (active1,active2)">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="/img/profile_small.jpg"/>
+                             </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="dashboard_2.html#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">管理员</strong>
+                             </span> </span>
+                    </a>
+                </div>
+            </li>
+            <li th:class="(${active1} == 'dashboard')?'active':''">
+                <a th:href="@{/admin}"><i class="fa fa-th-large"></i> <span class="nav-label">控制台</span></a>
+            </li>
+            <li th:class="(${active1} == 'article')?'active':''">
+                <a href="#"><i class="fa fa-file-word-o"></i> <span class="nav-label"> 文章管理</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li th:class="(${active2} == 'category')?'active':''"><a th:href="@{/admin/article/category/list}">分类管理</a></li>
+                    <li th:class="(${active2} == 'list')?'active':''"><a th:href="@{/admin/article/list}">文章列表</a></li>
+                    <li th:class="(${active2} == 'edit')?'active':''"><a th:href="@{/admin/article/add}">新增文章</a></li>
+                    <li th:class="(${active2} == 'tag')?'active':''"><a th:href="@{/admin/article/tag/list}">标签管理</a></li>
+                </ul>
+            </li>
+            <li th:class="(${active1} == 'album')?'active':''">
+                <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label"> 相册管理</span> <span
+                        class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level collapse">
+                    <li th:class="(${active2} == 'list')?'active':''"><a th:href="@{/admin/album/list}">相册列表</a></li>
+                    <li th:class="(${active2} == 'tag')?'active':''"><a th:href="@{/admin/album/tag/list}">标签管理</a></li>
+                </ul>
+            </li>
+            <li th:class="(${active1} == 'user')?'active':''">
+                <a th:href="user.html"><i class="fa fa-user"></i> <span class="nav-label"> 用户管理</span></a>
+            </li>
+            <li th:class="(${active1} == 'message')?'active':''">
+                <a th:href="message.html"><i class="fa fa-comments-o"></i> <span class="nav-label"> 留言管理</span></a>
+            </li>
+            <li th:class="(${active1} == 'system-set')?'active':''">
+                <a th:href="system-set.html"><i class="fa fa-cog"></i> <span class="nav-label"> 系统设置</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--nav-->
+<!--footer-->
+<div class="footer" th:fragment="footer (copy_right,icp,count_code)">
+    <div class="pull-right" th:text="${copy_right}">
+    </div>
+    <div th:text="${icp}">
+    </div>
+    <div th:text="${count_code}">
+    </div>
+</div>
+<!--footer-->
+<!--script-->
 <div th:fragment="script">
     <!-- Mainly scripts -->
     <script th:src="@{/js/jquery-2.1.1.js}"></script>
@@ -33,5 +92,7 @@
     <!-- jQuery UI -->
     <script th:src="@{/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
 </div>
+<!--script-->
 </body>
+
 </html>
