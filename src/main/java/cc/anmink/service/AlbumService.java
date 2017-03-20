@@ -1,7 +1,7 @@
 package cc.anmink.service;
 
 import cc.anmink.entity.SysAlbum;
-import cc.anmink.entity.SysArticle;
+import cc.anmink.entity.SysAlbumPic;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +19,10 @@ public interface AlbumService {
 
     //获取相册信息
     SysAlbum getById(Long id);
+
+    //新增照片
+    SysAlbumPic create(String link, Long album);
+
+    //根据album_id获取照片
+    List<SysAlbumPic> getByAlbum(Long album);
 }

@@ -40,7 +40,7 @@
                                         这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
                                     </div>
                                     <div class="m-t text-righ">
-                                        <a href="#" class="btn btn-xs btn-outline btn-primary">打开 <i
+                                        <a th:href="@{/admin/album/detail?id=} + ${list.id}" class="btn btn-xs btn-outline btn-primary">打开 <i
                                             class="fa fa-folder-open-o"></i> </a>
                                         <a th:onclick="'editAlbum('+ ${list.id} +')'" class="btn btn-xs btn-outline btn-success">编辑
                                         <i class="fa fa-pencil-square-o"></i> </a>

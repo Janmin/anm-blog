@@ -1,7 +1,9 @@
 package cc.anmink.service.Impl;
 
+import cc.anmink.dao.SysAlbumPicRepoitory;
 import cc.anmink.dao.SysAlbumRepoitory;
 import cc.anmink.entity.SysAlbum;
+import cc.anmink.entity.SysAlbumPic;
 import cc.anmink.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ import java.util.List;
 public class AlbumServiceImpl implements AlbumService {
     @Autowired
     SysAlbumRepoitory sysAlbumRepoitory;
+
+    @Autowired
+    SysAlbumPicRepoitory sysAlbumPicRepoitory;
 
     @Override
     public List<SysAlbum> getAll() {
@@ -31,5 +36,16 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public SysAlbum getById(Long id) {
         return sysAlbumRepoitory.findById(id);
+    }
+
+    @Override
+    public SysAlbumPic create(String link, Long album) {
+        Long timestamp = System.currentTimeMillis();
+        return sysAlbumPicRepoitory.save(new SysAlbumPic(link,album,timestamp));
+    }
+
+    @Override
+    public List<SysAlbumPic> getByAlbum(Long album) {
+        return sysAlbumPicRepoitory.findByAlbum(album);
     }
 }

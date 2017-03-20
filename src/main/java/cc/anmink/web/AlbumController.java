@@ -1,6 +1,7 @@
 package cc.anmink.web;
 
 import cc.anmink.entity.SysAlbum;
+import cc.anmink.entity.SysAlbumPic;
 import cc.anmink.responese.MyResponse;
 import cc.anmink.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,10 @@ public class AlbumController {
     //后台相册详情页面
     @RequestMapping("/admin/album/detail")
     public String albumDetail(Map map, long id) {
+        List<SysAlbumPic> sysAlbumPics = albumService.getByAlbum(id);
+        SysAlbum sysAlbum = albumService.getById(id);
+        map.put("lists", sysAlbumPics);
+        map.put("info",sysAlbum);
         return "admin/album-detail";
     }
 
@@ -63,4 +68,5 @@ public class AlbumController {
             return new MyResponse<Null>(400, "fail", null);
         }
     }
+
 }
