@@ -40,6 +40,15 @@ public class SysUser implements UserDetails {
         return auths;
     }
 
+    public SysUser() {
+    }
+
+    public SysUser(String username, String password, List<SysRole> roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
