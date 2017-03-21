@@ -2,6 +2,7 @@ package cc.anmink.service;
 
 import cc.anmink.entity.SysAlbum;
 import cc.anmink.entity.SysAlbumPic;
+import cc.anmink.entity.SysAlbumTag;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,4 +26,10 @@ public interface AlbumService {
 
     //根据album_id获取照片
     List<SysAlbumPic> getByAlbum(Long album);
+
+    //获取tag list
+    List<SysAlbumTag> getAllTag();
+
+    //新增ALBUM TAG
+    SysAlbumTag createTag(String name);
 }

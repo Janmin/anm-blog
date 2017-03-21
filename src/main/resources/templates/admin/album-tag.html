@@ -54,9 +54,11 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                        <input type="text" placeholder="标签名称" class="input-sm form-control"/> <span
+                                        <input type="text" placeholder="标签名称" id="tag-name"
+                                               class="input-sm form-control"/> <span
                                             class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary">新增</button> </span></div>
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                                onclick="addTag()">新增</button> </span></div>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -70,29 +72,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>默认</td>
-                                        <td>Jul 14, 2013</td>
-                                        <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>随感</td>
-                                        <td>Jul 16, 2013</td>
-                                        <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>散文</td>
-                                        <td>Jul 18, 2013</td>
-                                        <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>日志</td>
-                                        <td>Jul 22, 2013</td>
-                                        <td><a href="table_basic.html#"><i class="fa fa-check text-navy"></i></a></td>
+                                    <tr th:each="list,iterStat : ${lists}">
+                                        <td th:text="${list.id}">1</td>
+                                        <td th:text="${list.name}">默认</td>
+                                        <td th:text="${#dates.format(list.created,'yyyy/MM/dd HH:mm')}">Jul 14, 2013
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-white btn-xs" type="button">编辑</button>
+                                                <button class="btn btn-primary btn-xs" type="button">删除</button>
+                                            </div>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -113,6 +103,22 @@
     </div>
 </div>
 <div th:include="admin/layout :: script"></div>
+<script>
+    function addTag() {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/album/tag/add",
+            data: {name: $("#tag-name").val()},
+            success: function (data) {
+                if (data.ret == 200) {
+                    window.location.reload();
+                }else{
+                    alert("添加失败！");
+                }
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

@@ -57,13 +57,13 @@
                 </ul>
             </li>
             <li th:class="(${active1} == 'user')?'active':''">
-                <a th:href="user.html"><i class="fa fa-user"></i> <span class="nav-label"> 用户管理</span></a>
+                <a th:href="@{/admin/user}"><i class="fa fa-user"></i> <span class="nav-label"> 用户管理</span></a>
             </li>
             <li th:class="(${active1} == 'message')?'active':''">
-                <a th:href="message.html"><i class="fa fa-comments-o"></i> <span class="nav-label"> 留言管理</span></a>
+                <a th:href="@{/admin/message}"><i class="fa fa-comments-o"></i> <span class="nav-label"> 留言管理</span></a>
             </li>
             <li th:class="(${active1} == 'system-set')?'active':''">
-                <a th:href="system-set.html"><i class="fa fa-cog"></i> <span class="nav-label"> 系统设置</span></a>
+                <a th:href="@{/admin/system-set}"><i class="fa fa-cog"></i> <span class="nav-label"> 系统设置</span></a>
             </li>
         </ul>
     </div>

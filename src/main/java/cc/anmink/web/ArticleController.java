@@ -142,28 +142,4 @@ public class ArticleController {
         String j = String.valueOf(ClassLoader.getSystemResource("../"));
         System.out.println(j);
     }
-
-    @RequestMapping("/admin/upload")
-    @ResponseBody
-    public MyResponse handleFileUpload(@RequestParam("file") MultipartFile file) {
-        if (!file.isEmpty()) {
-            String new_file_name = System.currentTimeMillis() + "." + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
-            try {
-                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File("E:\\WorkSpace\\anm-blog\\src\\main\\resources\\static\\uploads\\" + new_file_name)));
-                out.write(file.getBytes());
-                out.flush();
-                out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return new MyResponse<Null>(400, e.getMessage(), null);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return new MyResponse<Null>(400, e.getMessage(), null);
-            }
-            String url = "/uploads/" + new_file_name;
-            return new MyResponse<String>(200, "success", url);
-        } else {
-            return new MyResponse<Null>(400, "fail", null);
-        }
-    }
 }
