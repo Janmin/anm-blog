@@ -25,7 +25,9 @@ import java.util.Map;
  */
 @Controller
 public class ArticleController {
+
     private SysSetting sysSetting;
+
     @Autowired
     ArticleService articleService;
     @Autowired

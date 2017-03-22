@@ -71,11 +71,10 @@
 <!--nav-->
 <!--footer-->
 <div class="footer" th:fragment="footer (copy_right,icp,count_code)">
-    <div class="pull-right" th:text="${copy_right}">
+    <div class="pull-right"><span th:text="${copy_right}"></span>&nbsp;&nbsp;<script type="text/javascript" th:src="${count_code}">
+    </script>
     </div>
     <div th:text="${icp}">
-    </div>
-    <div th:text="${count_code}">
     </div>
 </div>
 <!--footer-->

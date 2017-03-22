@@ -24,23 +24,21 @@
         </div>
         <div class="wrapper wrapper-content">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4" th:each="list,iterStat : ${lists}">
                     <div class="contact-box">
-                        <a href="profile.html">
+                        <a href="#">
                             <div class="col-sm-4">
                                 <div class="text-center">
-                                    <img alt="image" class="img-circle m-t-xs img-responsive" src="/img/a2.jpg"/>
-                                    <div class="m-t-xs font-bold">Graphics designer</div>
+                                    <img alt="image" class="img-circle m-t-xs img-responsive" th:src="${list.avatar}"/>
+                                    <div class="m-t-xs font-bold"></div>
                                 </div>
                             </div>
                             <div class="col-sm-8">
-                                <h3><strong>John Smith</strong></h3>
-                                <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
+                                <h3><strong th:text="${list.name}">John Smith</strong></h3>
+                                <p><i class="fa fa-map-marker"></i>&nbsp;<span th:text="${list.address}"></span></p>
                                 <address>
-                                    <strong>Twitter, Inc.</strong><br/>
-                                    795 Folsom Ave, Suite 600<br/>
-                                    San Francisco, CA 94107<br/>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                                    <p th:text="${#dates.format(list.created,'yyyy/MM/dd HH:mm')} + '注册'"></p>
+                                    <p title="Phone" th:text="'电话：' + ${list.phone}">P:</p>
                                 </address>
                             </div>
                             <div class="clearfix"></div>

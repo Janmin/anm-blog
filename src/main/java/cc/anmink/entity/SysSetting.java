@@ -17,16 +17,24 @@ public class SysSetting {
     private String count_code;
     private String copy_right;
     private String icp;
+    private String base_url;
+    private String site_name;
 
     public SysSetting() {
     }
 
-    public SysSetting(Integer site_status, String description, String count_code, String copy_right, String icp) {
+    public SysSetting(Integer site_status, String description, String count_code, String copy_right, String icp, String base_url, String site_name) {
         this.site_status = site_status;
         this.description = description;
         this.count_code = count_code;
         this.copy_right = copy_right;
         this.icp = icp;
+        this.base_url = base_url;
+        this.site_name = site_name;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Integer getSite_status() {
@@ -63,6 +71,22 @@ public class SysSetting {
 
     public String getIcp() {
         return icp;
+    }
+
+    public String getSite_name() {
+        return site_name;
+    }
+
+    public void setSite_name(String site_name) {
+        this.site_name = site_name;
+    }
+
+    public String getBase_url() {
+        return base_url;
+    }
+
+    public void setBase_url(String base_url) {
+        this.base_url = base_url;
     }
 
     public void setIcp(String icp) {

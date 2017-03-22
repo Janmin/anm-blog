@@ -25,6 +25,16 @@ public class SysUser implements UserDetails {
 
     private String password;
 
+    private String avatar;
+
+    private String name;
+
+    private String address;
+
+    private Long phone;
+
+    private Long created;
+
     //配置用户与角色多对多关系
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     private List<SysRole> roles;
@@ -43,10 +53,54 @@ public class SysUser implements UserDetails {
     public SysUser() {
     }
 
-    public SysUser(String username, String password, List<SysRole> roles) {
+    public SysUser(String username, String password, String avatar, String name, String address, Long phone, Long created) {
         this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.avatar = avatar;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.created = created;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
+
+    public Long getCreated() {
+        return created;
+    }
+
+    public void setCreated(Long created) {
+        this.created = created;
     }
 
     @Override

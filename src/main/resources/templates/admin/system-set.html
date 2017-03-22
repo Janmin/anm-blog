@@ -1,206 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard v.2</title>
-    <!-- maincss -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <!-- pluginscss -->
-    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="../css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
-    <link href="../css/plugins/summernote/summernote.css" rel="stylesheet">
-    <link href="../css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
-    <link href="../css/plugins/dropzone/basic.css" rel="stylesheet">
-    <link href="../css/plugins/dropzone/dropzone.css" rel="stylesheet">
-    <link href="../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-</head>
+<head th:include="admin/layout :: head"></head>
 
-<body>
-    <div id="wrapper">
-        <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="nav-header">
-                        <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="../img/profile_small.jpg" />
-                             </span>
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="dashboard_2.html#">
-                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">管理员</strong>
-                             </span> </span>
-                            </a>
-                        </div>
+<body th:inline="text">
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="admin/layout :: nav ('system-set','null')">
+    </nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
                     </li>
                     <li>
-                        <a href="dashboard.html"><i class="fa fa-th-large"></i> <span class="nav-label">控制台</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-file-word-o"></i> <span class="nav-label"> 文章管理</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="article-category.html">分类管理</a></li>
-                            <li><a href="article-list.html">文章列表</a></li>
-                            <li><a href="article-edit.html">新增文章</a></li>
-                            <li><a href="article-tag.html">标签管理</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label"> 相册管理</span> <span class="fa arrow"></span> </a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="album-list.html">相册列表</a></li>
-                            <li><a href="album-tag.html">标签管理</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="user.html"><i class="fa fa-user"></i> <span class="nav-label"> 用户管理</span></a>
-                    </li>
-                    <li>
-                        <a href="message.html"><i class="fa fa-comments-o"></i> <span class="nav-label"> 留言管理</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="system-set.html"><i class="fa fa-cog"></i> <span class="nav-label"> 系统设置</span></a>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i>退出
+                        </a>
                     </li>
                 </ul>
-            </div>
-        </nav>
-        <div id="page-wrapper" class="gray-bg">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                    <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
-                        </li>
-                        <li>
-                            <a href="login.html">
-                                <i class="fa fa-sign-out"></i>退出
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="wrapper wrapper-content">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="tabs-container">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="tabs.html#tab-1" aria-expanded="true">站点设置</a></li>
-                                <li class=""><a data-toggle="tab" href="tabs.html#tab-2" aria-expanded="false">管理员设置</a></li>
-                                <li class=""><a data-toggle="tab" href="tabs.html#tab-3" aria-expanded="false">邮件设置</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div id="tab-1" class="tab-pane active">
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">站点状态</label>
-                                                <div class="col-lg-11">
-                                                    <select class="form-control m-b" name="account">
-                                                        <option>开启</option>
-                                                        <option>关闭</option>
-                                                    </select>
-                                                </div>
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="tabs.html#tab-1" aria-expanded="true">站点设置</a>
+                            </li>
+                            <li class=""><a data-toggle="tab" href="tabs.html#tab-2" aria-expanded="false">管理员设置</a>
+                            </li>
+                            <li class=""><a data-toggle="tab" href="tabs.html#tab-3" aria-expanded="false">邮件设置</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="panel-body">
+                                    <form class="form-horizontal" id="site-setting">
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">站点状态</label>
+                                            <div class="col-lg-11">
+                                                <select class="form-control m-b" name="site_status">
+                                                    <option th:selected="${info.site_status==0}" value="0">开启</option>
+                                                    <option th:selected="${info.site_status==1}" value="1">关闭</option>
+                                                </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">站点名称</label>
-                                                <div class="col-lg-11">
-                                                    <input type="text" placeholder="站点名称" class="form-control">
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">站点名称</label>
+                                            <div class="col-lg-11">
+                                                <input type="text" placeholder="站点名称" class="form-control"
+                                                       name="site_name" th:value="${info.site_name}"/>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">SEO内容</label>
-                                                <div class="col-lg-11">
-                                                    <input type="text" placeholder="SEO内容" class="form-control">
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">SEO内容</label>
+                                            <div class="col-lg-11">
+                                                <input type="text" placeholder="SEO内容" class="form-control"
+                                                       name="description" th:value="${info.description}"/>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">统计代码</label>
-                                                <div class="col-lg-11">
-                                                    <input type="text" placeholder="统计代码" class="form-control">
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">统计代码</label>
+                                            <div class="col-lg-11">
+                                                <input type="text" placeholder="统计代码" class="form-control"
+                                                       name="count_code" th:value="${info.count_code}"/>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">版权声名</label>
-                                                <div class="col-lg-11">
-                                                    <input type="text" placeholder="版权声名" class="form-control">
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">版权声名</label>
+                                            <div class="col-lg-11">
+                                                <input type="text" placeholder="版权声名" class="form-control"
+                                                       name="copy_right" th:value="${info.copy_right}"/>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">ICP备案</label>
-                                                <div class="col-lg-11">
-                                                    <input type="text" placeholder="ICP备案" class="form-control">
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">ICP备案</label>
+                                            <div class="col-lg-11">
+                                                <input type="text" placeholder="ICP备案" class="form-control" name="icp"
+                                                       th:value="${info.icp}"/>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-lg-offset-1 col-lg-10">
-                                                    <button class="btn btn-white" type="button">取消</button>
-                                                    <button class="btn btn-sm btn-primary" type="submit">确定</button>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-1 col-lg-10">
+                                                <button class="btn btn-white" type="button">取消</button>
+                                                <button class="btn btn-sm btn-primary" type="button" onclick="updateSetting()">确定</button>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div id="tab-2" class="tab-pane">
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">管理员</label>
-                                                <div class="col-lg-11">
-                                                    <input type="text" placeholder="请输入管理员邮箱" class="form-control">
-                                                </div>
+                            </div>
+                            <div id="tab-2" class="tab-pane">
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">管理员</label>
+                                            <div class="col-lg-11">
+                                                <input type="text" placeholder="请输入管理员邮箱" class="form-control"/>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">输入密码</label>
-                                                <div class="col-lg-11">
-                                                    <input type="text" placeholder="请输入设置管理员密码" class="form-control">
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">输入密码</label>
+                                            <div class="col-lg-11">
+                                                <input type="text" placeholder="请输入设置管理员密码" class="form-control"/>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-lg-1 control-label">重复密码</label>
-                                                <div class="col-lg-11">
-                                                    <input type="text" placeholder="请重新输入设置管理员密码" class="form-control">
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-1 control-label">重复密码</label>
+                                            <div class="col-lg-11">
+                                                <input type="text" placeholder="请重新输入设置管理员密码" class="form-control"/>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-lg-offset-1 col-lg-11">
-                                                    <button class="btn btn-white" type="button">取消</button>
-                                                    <button class="btn btn-sm btn-primary" type="submit">确定</button>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-1 col-lg-11">
+                                                <button class="btn btn-white" type="button">取消</button>
+                                                <button class="btn btn-sm btn-primary" type="submit">确定</button>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div id="tab-3" class="tab-pane">
-                                    <div class="panel-body">
-                                    </div>
+                            </div>
+                            <div id="tab-3" class="tab-pane">
+                                <div class="panel-body">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer">
-                <div class="pull-right">
-                    10GB of <strong>250GB</strong> Free.
-                </div>
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2015
-                </div>
-            </div>
         </div>
+        <div class="footer" th:include="admin/layout :: footer (${info.copy_right},${info.icp},${info.count_code})"></div>
     </div>
-    <!-- Mainly scripts -->
-    <script src="../js/jquery-2.1.1.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- Custom and plugin javascript -->
-    <script src="../js/inspinia.js"></script>
-    <script src="../js/plugins/pace/pace.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+</div>
+<div th:include="admin/layout :: script"></div>
+<script>
+    function updateSetting() {
+        var data = $("#site-setting").serialize();
+        console.log(data);
+    }
+</script>
 </body>
 
 </html>
