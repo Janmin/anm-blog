@@ -53,7 +53,7 @@ public class SysUser implements UserDetails {
     public SysUser() {
     }
 
-    public SysUser(String username, String password, String avatar, String name, String address, Long phone, Long created) {
+    public SysUser(String username, String password, String avatar, String name, String address, Long phone, Long created, List<SysRole> roles) {
         this.username = username;
         this.password = password;
         this.avatar = avatar;
@@ -61,6 +61,7 @@ public class SysUser implements UserDetails {
         this.address = address;
         this.phone = phone;
         this.created = created;
+        this.roles = roles;
     }
 
     public String getAvatar() {

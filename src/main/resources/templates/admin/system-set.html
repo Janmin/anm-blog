@@ -5,7 +5,8 @@
 
 <body th:inline="text">
 <div id="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation" th:include="admin/layout :: nav ('system-set','null')">
+    <nav class="navbar-default navbar-static-side" role="navigation"
+         th:include="admin/layout :: nav ('system-set','null')">
     </nav>
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
@@ -84,7 +85,9 @@
                                         <div class="form-group">
                                             <div class="col-lg-offset-1 col-lg-10">
                                                 <button class="btn btn-white" type="button">取消</button>
-                                                <button class="btn btn-sm btn-primary" type="button" onclick="updateSetting()">确定</button>
+                                                <button class="btn btn-sm btn-primary" type="button"
+                                                        onclick="updateSetting()">确定
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -92,13 +95,7 @@
                             </div>
                             <div id="tab-2" class="tab-pane">
                                 <div class="panel-body">
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">管理员</label>
-                                            <div class="col-lg-11">
-                                                <input type="text" placeholder="请输入管理员邮箱" class="form-control"/>
-                                            </div>
-                                        </div>
+                                    <form class="form-horizontal" id="admin-pwd">
                                         <div class="form-group">
                                             <label class="col-lg-1 control-label">输入密码</label>
                                             <div class="col-lg-11">
@@ -114,7 +111,7 @@
                                         <div class="form-group">
                                             <div class="col-lg-offset-1 col-lg-11">
                                                 <button class="btn btn-white" type="button">取消</button>
-                                                <button class="btn btn-sm btn-primary" type="submit">确定</button>
+                                                <button class="btn btn-sm btn-primary" type="submit" onclick="updatePassword()">确定</button>
                                             </div>
                                         </div>
                                     </form>
@@ -129,14 +126,26 @@
                 </div>
             </div>
         </div>
-        <div class="footer" th:include="admin/layout :: footer (${info.copy_right},${info.icp},${info.count_code})"></div>
+        <div class="footer"
+             th:include="admin/layout :: footer (${info.copy_right},${info.icp},${info.count_code})"></div>
     </div>
 </div>
 <div th:include="admin/layout :: script"></div>
-<script>
+<script th:inline="javascript">
     function updateSetting() {
         var data = $("#site-setting").serialize();
-        console.log(data);
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: data,
+            success: function () {
+
+            }
+        });
+    }
+
+    function updatePassword(){
+        var data = $('#admin-pwd').serialize();
     }
 </script>
 </body>

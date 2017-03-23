@@ -5,6 +5,7 @@ import cc.anmink.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -23,4 +24,12 @@ public class UserController {
         map.put("lists", sysUsers);
         return "admin/user";
     }
+
+    @RequestMapping("/api/user/add")
+    @ResponseBody
+    public SysUser userAdd(String username, String password, String avatar, String name, String address, Long phone, Long created, String roles_name) {
+        SysUser sysUser = userService.create(username, password, avatar, name, address, phone, created, roles_name);
+        return sysUser;
+    }
+
 }
