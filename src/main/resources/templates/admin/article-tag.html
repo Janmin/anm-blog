@@ -100,7 +100,7 @@
 <script>
     function addTag() {
         $.ajax({
-            url: "http://localhost:8080/api/article/tag/add",
+            url: "/api/article/tag/add",
             type: "POST",
             data: {name: $("#tag-name").val()},
             dataType: "json",
