@@ -1,5 +1,6 @@
 package cc.anmink.web;
 
+import cc.anmink.baseServe.MyResponse;
 import cc.anmink.entity.SysSetting;
 import cc.anmink.service.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class SystemSetController {
         SysSetting sysSetting = settingService.getById();
         map.put("info", sysSetting);
         return "admin/system-set";
+    }
+
+    @RequestMapping("/api/sendSms")
+    public MyResponse sendSms() {
+
     }
 }

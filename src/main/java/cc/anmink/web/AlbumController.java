@@ -3,7 +3,7 @@ package cc.anmink.web;
 import cc.anmink.entity.SysAlbum;
 import cc.anmink.entity.SysAlbumPic;
 import cc.anmink.entity.SysAlbumTag;
-import cc.anmink.responese.MyResponse;
+import cc.anmink.baseServe.MyResponse;
 import cc.anmink.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Null;
 import java.io.*;
-import java.rmi.server.ExportException;
 import java.util.List;
 import java.util.Map;
 
