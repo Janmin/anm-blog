@@ -1,5 +1,6 @@
 package cc.anmink.service;
 
+import cc.anmink.entity.SysMailSetting;
 import cc.anmink.entity.SysSetting;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,6 @@ public interface SettingService {
     SysSetting getById();
 
     int updateAllById(String count_code, String copy_right, String description, String icp, Integer site_status, Long id);
+
+    SysMailSetting getMailById();
 }

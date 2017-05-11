@@ -1,6 +1,8 @@
 package cc.anmink.service.Impl;
 
+import cc.anmink.dao.SysMailSettingRepoitory;
 import cc.anmink.dao.SysSettingRepoitory;
+import cc.anmink.entity.SysMailSetting;
 import cc.anmink.entity.SysSetting;
 import cc.anmink.service.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import java.util.List;
 public class SettingServiceImpl implements SettingService {
     @Autowired
     private SysSettingRepoitory sysSettingRepoitory;
+
+    @Autowired
+    private SysMailSettingRepoitory sysMailSettingRepoitory;
 
     @Override
     public List<SysSetting> getAll() {
@@ -31,5 +36,9 @@ public class SettingServiceImpl implements SettingService {
         return sysSettingRepoitory.updateAllById(count_code, copy_right, description, icp, site_status, id);
     }
 
+    @Override
+    public SysMailSetting getMailById() {
+        return sysMailSettingRepoitory.findById((long) 1);
+    }
 
 }
