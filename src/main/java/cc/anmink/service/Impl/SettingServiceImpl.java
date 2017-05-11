@@ -1,7 +1,12 @@
 package cc.anmink.service.Impl;
 
+import cc.anmink.dao.SysMailSettingRepoitory;
 import cc.anmink.dao.SysSettingRepoitory;
+<<<<<<< HEAD
 import cc.anmink.dao.SysSmsSettingRepoitory;
+=======
+import cc.anmink.entity.SysMailSetting;
+>>>>>>> cb66d05212e1c01a4adfa0399a27117e27011630
 import cc.anmink.entity.SysSetting;
 import cc.anmink.entity.SysSmsSetting;
 import cc.anmink.service.SettingService;
@@ -19,7 +24,11 @@ public class SettingServiceImpl implements SettingService {
     private SysSettingRepoitory sysSettingRepoitory;
 
     @Autowired
+<<<<<<< HEAD
     private SysSmsSettingRepoitory sysSmsSettingRepoitory;
+=======
+    private SysMailSettingRepoitory sysMailSettingRepoitory;
+>>>>>>> cb66d05212e1c01a4adfa0399a27117e27011630
 
     @Override
     public List<SysSetting> getAll() {
@@ -37,9 +46,15 @@ public class SettingServiceImpl implements SettingService {
     }
 
     @Override
+<<<<<<< HEAD
     public SysSmsSetting getSmsById(Long id) {
         return sysSmsSettingRepoitory.findById(id);
     }
 
+=======
+    public SysMailSetting getMailById() {
+        return sysMailSettingRepoitory.findById((long) 1);
+    }
+>>>>>>> cb66d05212e1c01a4adfa0399a27117e27011630
 
 }
