@@ -24,7 +24,7 @@ public class MyMailSend {
 
     private static JavaMailSender createJavaMailSender(String username, String password, String host, String port) {
         Properties properties = new Properties();
-        properties.setProperty("mail.debug", "true");// 是否显示调试信息(可选)
+        properties.setProperty("mail.debug", "true");// 是否显示调试信息
         properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         properties.setProperty("mail.smtp.socketFactory.port", "465");
         properties.setProperty("mail.smtp.socketFactory.fallback", "false");
@@ -36,7 +36,7 @@ public class MyMailSend {
         javaMailSender.setUsername(username);
         javaMailSender.setPassword(password);
         javaMailSender.setHost(host);
-        javaMailSender.setPort(465);
+        javaMailSender.setPort(Integer.parseInt(port));
         javaMailSender.setDefaultEncoding("UTF-8");
         return javaMailSender;
     }
@@ -76,41 +76,41 @@ public class MyMailSend {
     /**
      * @descrption 发送含附件的邮件
      */
-//    public static void sendMimeMailMessageAttachment() throws MessagingException, UnsupportedEncodingException,
-//            MalformedURLException {
-//        JavaMailSender javaMailSender = createJavaMailSender();
-//
-//        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-//        // 第二个参数设置为true，表示允许添加附件
-//        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-//        helper.setTo("790419465@qq.com");
-//        helper.setSubject("发送含图片附件的邮件");
-//        // 第二个参数为true表示需要内容为HTML格式
-//        helper.setText("<h1>Hello</h1>", true);
-//        // 需要对文件名进行转码
-//        helper.addAttachment(MimeUtility.encodeText("xdwang.jpg"), new File("E:\\软件大赛.jpg"));
-//        helper.addAttachment(MimeUtility.encodeText("baidu.gif"), new URLDataSource(new URL(
-//                "http://www.baidu.com/img/shouye_b5486898c692066bd2cbaeda86d74448.gif")));
-//
-//        javaMailSender.send(mimeMessage);
-//    }
+    public static void sendMimeMailMessageAttachment(String username, String password, String host, String port, String from, String to, String subject, String text) throws MessagingException, UnsupportedEncodingException,
+            MalformedURLException {
+        JavaMailSender javaMailSender = createJavaMailSender(username, password, host, port);
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        // 第二个参数设置为true，表示允许添加附件
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+        helper.setTo("790419465@qq.com");
+        helper.setSubject("发送含图片附件的邮件");
+        // 第二个参数为true表示需要内容为HTML格式
+        helper.setText("<h1>Hello</h1>", true);
+        // 需要对文件名进行转码
+        helper.addAttachment(MimeUtility.encodeText("xdwang.jpg"), new File("E:\\软件大赛.jpg"));
+        helper.addAttachment(MimeUtility.encodeText("baidu.gif"), new URLDataSource(new URL(
+                "http://www.baidu.com/img/shouye_b5486898c692066bd2cbaeda86d74448.gif")));
+
+        javaMailSender.send(mimeMessage);
+    }
 
     /**
      * @descrption 发送HTML格式含图片的邮件
      */
-//    public static void sendMimeMailMessageInline() throws MessagingException, MalformedURLException {
-//        JavaMailSender javaMailSender = createJavaMailSender();
-//
-//        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-//        // 第二个参数设置为true，表示允许添加附件
-//        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-//        helper.setTo("790419465@qq.com");
-//        helper.setSubject("发送含图片附件的邮件");
-//        // 第二个参数为true表示需要内容为HTML格式
-//        helper.setText("<h1>Hello</h1><br><img src='cid:fileId'><img src='cid:abc'>", true);
-//        helper.addInline("fileId", new File("E:\\软件大赛.jpg"));
-//        helper.addInline("abc", new UrlResource("http://www.baidu.com/img/shouye_b5486898c692066bd2cbaeda86d74448.gif"));
-//
-//        javaMailSender.send(mimeMessage);
-//    }
+    public static void sendMimeMailMessageInline(String username, String password, String host, String port, String from, String to, String subject, String text) throws MessagingException, MalformedURLException {
+        JavaMailSender javaMailSender = createJavaMailSender(username, password, host, port);
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        // 第二个参数设置为true，表示允许添加附件
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+        helper.setTo("790419465@qq.com");
+        helper.setSubject("发送含图片附件的邮件");
+        // 第二个参数为true表示需要内容为HTML格式
+        helper.setText("<h1>Hello</h1><br><img src='cid:fileId'><img src='cid:abc'>", true);
+        helper.addInline("fileId", new File("E:\\软件大赛.jpg"));
+        helper.addInline("abc", new UrlResource("http://www.baidu.com/img/shouye_b5486898c692066bd2cbaeda86d74448.gif"));
+
+        javaMailSender.send(mimeMessage);
+    }
 }
