@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
@@ -34,26 +35,36 @@ public class SystemSetController {
     }
 
 
-    @RequestMapping(value = "/api/send-sms", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/sms-send", method = RequestMethod.GET)
     @ResponseBody
     public MyResponse sendSms() {
 //        String result = MyRequest.sendGet("http://112.124.17.46:7001/sms_token", "ddtkey=yueke&secretkey=2d4e42294fdd9f58399650e05298fd22&mobile=18602534705&content=您的验证码为100,30秒内有效");
         SysSmsSetting sysSmsSetting = settingService.getSmsById((long) 1);
         String url = sysSmsSetting.getUrl();
         String content = sysSmsSetting.getContent();
-        content = content.replace("100", "500");
-        System.out.println(content);
+
+        content = content.replace("{number}", "500");
+
+        String string = "ddtkey="+sysSmsSetting.getUsername()+"&secretkey="+sysSmsSetting.getPassword()+"&mobile=18602534705&content="+content;
+
+        System.out.println(string);
+
         return new MyResponse(200, "success", sysSmsSetting);
     }
 
 
-    @RequestMapping("/admin/send-mail")
+    @RequestMapping("/api/mail-send")
     @ResponseBody
-    public void sendMail() throws UnsupportedEncodingException, MessagingException {
+    public MyResponse sendMail() throws UnsupportedEncodingException, MessagingException {
         SysMailSetting sysMailSetting = settingService.getMailById();
 
         MyMailSend myMailSend = new MyMailSend();
-//        sysMailSetting.getUsername(),sysMailSetting.getPassword(),sysMailSetting.getHost(), "zijian92@qq.com", "zijian92@163.com",sysMailSetting.getSubject(),sysMailSetting.getText()
-        myMailSend.sendMimeMailMessage(sysMailSetting.getUsername(),sysMailSetting.getPassword(),sysMailSetting.getHost(),"465","zijian92@qq.com","zijian92@163.com",sysMailSetting.getSubject(),sysMailSetting.getText());
+
+        try {
+            myMailSend.sendMimeMailMessage(sysMailSetting.getUsername(),sysMailSetting.getPassword(),sysMailSetting.getHost(),"465","zijian92@qq.com","zijian92@163.com",sysMailSetting.getSubject(),sysMailSetting.getText());
+            return new MyResponse(200, "success",null);
+        }catch (Exception e){
+            return new MyResponse(400, "fail",null);
+        }
     }
 }
