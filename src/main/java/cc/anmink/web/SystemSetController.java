@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.mail.MessagingException;
-import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
@@ -38,18 +37,19 @@ public class SystemSetController {
     @RequestMapping(value = "/api/sms-send", method = RequestMethod.GET)
     @ResponseBody
     public MyResponse sendSms() {
-//        String result = MyRequest.sendGet("http://112.124.17.46:7001/sms_token", "ddtkey=yueke&secretkey=2d4e42294fdd9f58399650e05298fd22&mobile=18602534705&content=您的验证码为100,30秒内有效");
         SysSmsSetting sysSmsSetting = settingService.getSmsById((long) 1);
         String url = sysSmsSetting.getUrl();
         String content = sysSmsSetting.getContent();
-
         content = content.replace("{number}", "500");
-
-        String string = "ddtkey="+sysSmsSetting.getUsername()+"&secretkey="+sysSmsSetting.getPassword()+"&mobile=18602534705&content="+content;
-
-        System.out.println(string);
-
-        return new MyResponse(200, "success", sysSmsSetting);
+        String params = "ddtkey=" + sysSmsSetting.getUsername() + "&secretkey=" + sysSmsSetting.getPassword() + "&mobile=18602534705&content=" + content;
+        System.out.println(params);
+        String result = MyRequest.sendGet(url, params);
+        System.out.println(result);
+        if (result.substring(0, 4) == "/nok") {
+            return new MyResponse(200, "success", null);
+        } else {
+            return new MyResponse(400, "fail", null);
+        }
     }
 
 
@@ -61,10 +61,23 @@ public class SystemSetController {
         MyMailSend myMailSend = new MyMailSend();
 
         try {
-            myMailSend.sendMimeMailMessage(sysMailSetting.getUsername(),sysMailSetting.getPassword(),sysMailSetting.getHost(),"465","zijian92@qq.com","zijian92@163.com",sysMailSetting.getSubject(),sysMailSetting.getText());
-            return new MyResponse(200, "success",null);
-        }catch (Exception e){
-            return new MyResponse(400, "fail",null);
+            myMailSend.sendMimeMailMessage(sysMailSetting.getUsername(), sysMailSetting.getPassword(), sysMailSetting.getHost(), "465", "zijian92@qq.com", "zijian92@163.com", sysMailSetting.getSubject(), sysMailSetting.getText());
+            return new MyResponse(200, "success", null);
+        } catch (Exception e) {
+            return new MyResponse(400, "fail", null);
+        }
+    }
+
+    @RequestMapping("/api/test")
+    @ResponseBody
+    public MyResponse test(){
+        String result = "/nok,201705141930050311";
+        String res = result.substring(0, 4);
+        System.out.println(res);
+        if (result.substring(0, 4) == "/nok") {
+            return new MyResponse(200, "success", null);
+        } else {
+            return new MyResponse(400, "fail", null);
         }
     }
 }
