@@ -20,5 +20,9 @@ public interface SettingService {
 
     SysSmsSetting getSmsById(Long id);
 
+    int updateSms(String url, String username, String password, String content);
+
     SysMailSetting getMailById();
+
+
 }

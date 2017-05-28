@@ -29,8 +29,16 @@ public class SystemSetController {
 
     @RequestMapping("/admin/system-set")
     public String systemSet(Map map) {
+        // 获取系统设置
         SysSetting sysSetting = settingService.getById();
-        map.put("info", sysSetting);
+        // 获取短信设置
+        SysSmsSetting sysSmsSetting = settingService.getSmsById((long) 1);
+        // 获取邮件设置
+        SysMailSetting sysMailSetting = settingService.getMailById();
+
+        map.put("sys_info", sysSetting);
+        map.put("sms_info", sysSmsSetting);
+        map.put("mail_info", sysMailSetting);
         return "admin/system-set";
     }
 
@@ -38,18 +46,30 @@ public class SystemSetController {
     @RequestMapping(value = "/api/sms-send", method = RequestMethod.GET)
     @ResponseBody
     public MyResponse sendSms() {
-//        String result = MyRequest.sendGet("http://112.124.17.46:7001/sms_token", "ddtkey=yueke&secretkey=2d4e42294fdd9f58399650e05298fd22&mobile=18602534705&content=您的验证码为100,30秒内有效");
         SysSmsSetting sysSmsSetting = settingService.getSmsById((long) 1);
         String url = sysSmsSetting.getUrl();
         String content = sysSmsSetting.getContent();
 
         content = content.replace("{number}", "500");
 
-        String string = "ddtkey="+sysSmsSetting.getUsername()+"&secretkey="+sysSmsSetting.getPassword()+"&mobile=18602534705&content="+content;
+        String string = "ddtkey=" + sysSmsSetting.getUsername() + "&secretkey=" + sysSmsSetting.getPassword() + "&mobile=18602534705&content=" + content;
 
         System.out.println(string);
 
         return new MyResponse(200, "success", sysSmsSetting);
+    }
+
+    @RequestMapping(value = "/api/admin/sms-setting-update", method = RequestMethod.POST)
+    @ResponseBody
+    public MyResponse updateSmsSetting(String url, String username, String password, String content) {
+        try {
+            int i = settingService.updateSms(url, username, password, content);
+            System.out.println(i);
+            return new MyResponse(200, "success", null);
+        } catch (Exception e) {
+            return new MyResponse(400, "fail", null);
+        }
+
     }
 
 
@@ -61,10 +81,10 @@ public class SystemSetController {
         MyMailSend myMailSend = new MyMailSend();
 
         try {
-            myMailSend.sendMimeMailMessage(sysMailSetting.getUsername(),sysMailSetting.getPassword(),sysMailSetting.getHost(),"465","zijian92@qq.com","zijian92@163.com",sysMailSetting.getSubject(),sysMailSetting.getText());
-            return new MyResponse(200, "success",null);
-        }catch (Exception e){
-            return new MyResponse(400, "fail",null);
+            myMailSend.sendMimeMailMessage(sysMailSetting.getUsername(), sysMailSetting.getPassword(), sysMailSetting.getHost(), "465", "zijian92@qq.com", "zijian92@163.com", sysMailSetting.getSubject(), sysMailSetting.getText());
+            return new MyResponse(200, "success", null);
+        } catch (Exception e) {
+            return new MyResponse(400, "fail", null);
         }
     }
 }

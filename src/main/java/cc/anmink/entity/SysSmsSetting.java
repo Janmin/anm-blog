@@ -17,6 +17,18 @@ public class SysSmsSetting {
     private String password;
     private String content;
 
+    public SysSmsSetting() {
+
+    }
+
+    public SysSmsSetting(String url, String username, String password, String content) {
+        this.url = url;
+        this.username = username;
+        this.password = password;
+        this.content = content;
+    }
+
+
     public String getUrl() {
         return url;
     }
