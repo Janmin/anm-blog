@@ -49,24 +49,14 @@ public class SystemSetController {
         String url = sysSmsSetting.getUrl();
         String content = sysSmsSetting.getContent();
         content = content.replace("{number}", "500");
-<<<<<<< HEAD
+
         String params = "ddtkey=" + sysSmsSetting.getUsername() + "&secretkey=" + sysSmsSetting.getPassword() + "&mobile=18602534705&content=" + content;
-        System.out.println(params);
         String result = MyRequest.sendGet(url, params);
-        System.out.println(result);
         if (result.substring(0, 4) == "/nok") {
             return new MyResponse(200, "success", null);
         } else {
             return new MyResponse(400, "fail", null);
         }
-=======
-
-        String string = "ddtkey=" + sysSmsSetting.getUsername() + "&secretkey=" + sysSmsSetting.getPassword() + "&mobile=18602534705&content=" + content;
-
-        System.out.println(string);
-
-        return new MyResponse(200, "success", sysSmsSetting);
->>>>>>> 2bd580fd2dab5f04590a2dcb685bc9f9b1264128
     }
 
     @RequestMapping(value = "/api/admin/sms-setting-update", method = RequestMethod.POST)
@@ -95,22 +85,6 @@ public class SystemSetController {
             return new MyResponse(200, "success", null);
         } catch (Exception e) {
             return new MyResponse(400, "fail", null);
-<<<<<<< HEAD
-        }
-    }
-
-    @RequestMapping("/api/test")
-    @ResponseBody
-    public MyResponse test(){
-        String result = "/nok,201705141930050311";
-        String res = result.substring(0, 4);
-        System.out.println(res);
-        if (result.substring(0, 4) == "/nok") {
-            return new MyResponse(200, "success", null);
-        } else {
-            return new MyResponse(400, "fail", null);
-=======
->>>>>>> 2bd580fd2dab5f04590a2dcb685bc9f9b1264128
         }
     }
 }
