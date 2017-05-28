@@ -48,7 +48,7 @@ public class SettingServiceImpl implements SettingService {
 
     @Override
     public int updateSms(String url, String username, String password, String content) {
-        return sysSmsSettingRepoitory.updateSmsById((long) 1, url, username, password, content);
+        return sysSmsSettingRepoitory.updateSmsById(url, username, password, content, (long) 1);
     }
 
     @Override

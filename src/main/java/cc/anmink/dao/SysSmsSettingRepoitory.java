@@ -16,6 +16,6 @@ public interface SysSmsSettingRepoitory extends JpaRepository<SysSmsSetting, Lon
 
     @Modifying
     @Transactional
-    @Query("update SysSmsSetting s set s.url =?2,s.username=?3,s.password=?4,s.icp=?4,s.content=?5 where s.id = ?1")
-    int updateSmsById(Long id, String url, String username, String password, String content);
+    @Query("UPDATE SysSmsSetting s SET s.url =?1,s.username=?2,s.password=?3,s.content=?4 WHERE s.id = ?5")
+    int updateSmsById(String url, String username, String password, String content, Long id);
 }
