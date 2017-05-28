@@ -4,150 +4,237 @@
 <head th:include="admin/layout :: head"></head>
 
 <body th:inline="text">
-<div id="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation"
-         th:include="admin/layout :: nav ('system-set','null')">
-    </nav>
-    <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
-                    </li>
-                    <li>
-                        <a href="login.html">
-                            <i class="fa fa-sign-out"></i>退出
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="wrapper wrapper-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="tabs-container">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="tabs.html#tab-1" aria-expanded="true">站点设置</a>
-                            </li>
-                            <li class=""><a data-toggle="tab" href="tabs.html#tab-2" aria-expanded="false">管理员设置</a>
-                            </li>
-                            <li class=""><a data-toggle="tab" href="tabs.html#tab-3" aria-expanded="false">邮件设置</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div id="tab-1" class="tab-pane active">
-                                <div class="panel-body">
-                                    <form class="form-horizontal" id="site-setting">
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">站点状态</label>
-                                            <div class="col-lg-11">
-                                                <select class="form-control m-b" name="site_status">
-                                                    <option th:selected="${info.site_status==0}" value="0">开启</option>
-                                                    <option th:selected="${info.site_status==1}" value="1">关闭</option>
-                                                </select>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation" th:include="admin/layout :: nav ('system-set','null')">
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
+                        </li>
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i>退出
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="tabs.html#tab-1" aria-expanded="true">站点设置</a>
+                                </li>
+                                <li class=""><a data-toggle="tab" href="tabs.html#tab-2" aria-expanded="false">管理员设置</a>
+                                </li>
+                                <li class=""><a data-toggle="tab" href="tabs.html#tab-3" aria-expanded="false">邮件设置</a></li>
+                                <li class=""><a data-toggle="tab" href="tabs.html#tab-4" aria-expanded="false">短信设置</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" id="site-setting" method="post">
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">站点状态</label>
+                                                <div class="col-lg-11">
+                                                    <select class="form-control m-b" name="site_status">
+                                                        <option th:selected="${sys_info.site_status==0}" value="0">开启</option>
+                                                        <option th:selected="${sys_info.site_status==1}" value="1">关闭</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">站点名称</label>
-                                            <div class="col-lg-11">
-                                                <input type="text" placeholder="站点名称" class="form-control"
-                                                       name="site_name" th:value="${info.site_name}"/>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">站点名称</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="站点名称" class="form-control" name="site_name" th:value="${sys_info.site_name}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">SEO内容</label>
-                                            <div class="col-lg-11">
-                                                <input type="text" placeholder="SEO内容" class="form-control"
-                                                       name="description" th:value="${info.description}"/>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">SEO内容</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="SEO内容" class="form-control" name="description" th:value="${sys_info.description}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">统计代码</label>
-                                            <div class="col-lg-11">
-                                                <input type="text" placeholder="统计代码" class="form-control"
-                                                       name="count_code" th:value="${info.count_code}"/>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">统计代码</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="统计代码" class="form-control" name="count_code" th:value="${sys_info.count_code}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">版权声名</label>
-                                            <div class="col-lg-11">
-                                                <input type="text" placeholder="版权声名" class="form-control"
-                                                       name="copy_right" th:value="${info.copy_right}"/>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">版权声名</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="版权声名" class="form-control" name="copy_right" th:value="${sys_info.copy_right}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">ICP备案</label>
-                                            <div class="col-lg-11">
-                                                <input type="text" placeholder="ICP备案" class="form-control" name="icp"
-                                                       th:value="${info.icp}"/>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">ICP备案</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="ICP备案" class="form-control" name="icp" th:value="${sys_info.icp}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-offset-1 col-lg-10">
-                                                <button class="btn btn-white" type="button">取消</button>
-                                                <button class="btn btn-sm btn-primary" type="button"
-                                                        onclick="updateSetting()">确定
-                                                </button>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-1 col-lg-10">
+                                                    <button class="btn btn-white" type="button">取消</button>
+                                                    <button class="btn btn-sm btn-primary" type="button">确定</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="tab-2" class="tab-pane">
-                                <div class="panel-body">
-                                    <form class="form-horizontal" id="admin-pwd">
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">输入密码</label>
-                                            <div class="col-lg-11">
-                                                <input type="text" placeholder="请输入设置管理员密码" class="form-control"/>
+                                <div id="tab-2" class="tab-pane">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" id="admin-pwd" method="post">
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">输入密码</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="请输入设置管理员密码" class="form-control" name="password" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-1 control-label">重复密码</label>
-                                            <div class="col-lg-11">
-                                                <input type="text" placeholder="请重新输入设置管理员密码" class="form-control"/>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">重复密码</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="请重新输入设置管理员密码" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-offset-1 col-lg-11">
-                                                <button class="btn btn-white" type="button">取消</button>
-                                                <button class="btn btn-sm btn-primary" type="submit" onclick="updatePassword()">确定</button>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-1 col-lg-11">
+                                                    <button class="btn btn-white" type="button">取消</button>
+                                                    <button class="btn btn-sm btn-primary" type="button" onclick="updatePassword()">确定</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="tab-3" class="tab-pane">
-                                <div class="panel-body">
+                                <div id="tab-3" class="tab-pane">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" id="mail-setting" method="post">
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">服务地址</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="e.g. smtp.qq.com" th:value="${mail_info.host}" class="form-control" name="host" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">服务端口</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="默认465" th:value="${mail_info.port}" class="form-control" name="port" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">邮箱地址</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="e.g. example@qq.com" th:value="${mail_info.username}" class="form-control" name="username" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">邮箱密码</label>
+                                                <div class="col-lg-11">
+                                                    <input type="password" placeholder="" th:value="${mail_info.password}" class="form-control" name="password" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">邮件主题</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="填写您通知邮件的主题" th:value="${mail_info.subject}" class="form-control" name="subject" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">邮件内容</label>
+                                                <div class="col-lg-11">
+                                                    <textarea placeholder="请填写邮件内容，支持html" class="form-control" rows="5" th:text="${mail_info.text}" name="text"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-1 col-lg-11">
+                                                    <button class="btn btn-white" type="button">取消</button>
+                                                    <button class="btn btn-sm btn-primary" type="button" onclick="updateMailSetting();">确定</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="tab-4" class="tab-pane">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" id="sms-setting" method="post">
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">短信通道：</label>
+                                                <div class="col-lg-11">
+                                                    <input type="url" placeholder="请输入短信通道地址" th:value="${sms_info.url}" name="url" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">用户名：</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="请输入用户名" th:value="${sms_info.username}" name="username" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">密码：</label>
+                                                <div class="col-lg-11">
+                                                    <input type="password" placeholder="请输入密码" th:value="${sms_info.password}" name="password" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-1 control-label">短信内容：</label>
+                                                <div class="col-lg-11">
+                                                    <input type="text" placeholder="请输入短信内容，验证码以{number}替换" th:value="${sms_info.content}" name="content" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-1 col-lg-11">
+                                                    <button class="btn btn-white" type="button">取消</button>
+                                                    <button class="btn btn-sm btn-primary" type="button" onclick="updateSmsSetting();">确定</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="footer" th:include="admin/layout :: footer (${sys_info.copy_right},${sys_info.icp},${sys_info.count_code})"></div>
         </div>
-        <div class="footer"
-             th:include="admin/layout :: footer (${info.copy_right},${info.icp},${info.count_code})"></div>
     </div>
-</div>
-<div th:include="admin/layout :: script"></div>
-<script th:inline="javascript">
+    <div th:include="admin/layout :: script"></div>
+    <script th:inline="javascript">
     function updateSetting() {
         var data = $("#site-setting").serialize();
+        return false;
         $.ajax({
             url: '',
             type: 'POST',
             data: data,
-            success: function () {
+            success: function() {
 
             }
         });
     }
 
-    function updatePassword(){
+    function updatePassword() {
         var data = $('#admin-pwd').serialize();
+        console.log(data);
+        return false;
     }
-</script>
+
+    function updateMailSetting() {
+        var data = $('#mail-setting').serialize();
+        console.log(data);
+        return false;
+    }
+
+    function updateSmsSetting() {
+        var data = $('#sms-setting').serialize();
+        console.log(data);
+        return false;
+    }
+    </script>
 </body>
 
 </html>

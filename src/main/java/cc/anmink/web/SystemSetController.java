@@ -28,8 +28,16 @@ public class SystemSetController {
 
     @RequestMapping("/admin/system-set")
     public String systemSet(Map map) {
+        // 获取系统设置
         SysSetting sysSetting = settingService.getById();
-        map.put("info", sysSetting);
+        // 获取短信设置
+        SysSmsSetting sysSmsSetting = settingService.getSmsById((long) 1);
+        // 获取邮件设置
+        SysMailSetting sysMailSetting = settingService.getMailById();
+
+        map.put("sys_info", sysSetting);
+        map.put("sms_info", sysSmsSetting);
+        map.put("mail_info", sysMailSetting);
         return "admin/system-set";
     }
 
@@ -41,6 +49,7 @@ public class SystemSetController {
         String url = sysSmsSetting.getUrl();
         String content = sysSmsSetting.getContent();
         content = content.replace("{number}", "500");
+<<<<<<< HEAD
         String params = "ddtkey=" + sysSmsSetting.getUsername() + "&secretkey=" + sysSmsSetting.getPassword() + "&mobile=18602534705&content=" + content;
         System.out.println(params);
         String result = MyRequest.sendGet(url, params);
@@ -50,6 +59,27 @@ public class SystemSetController {
         } else {
             return new MyResponse(400, "fail", null);
         }
+=======
+
+        String string = "ddtkey=" + sysSmsSetting.getUsername() + "&secretkey=" + sysSmsSetting.getPassword() + "&mobile=18602534705&content=" + content;
+
+        System.out.println(string);
+
+        return new MyResponse(200, "success", sysSmsSetting);
+>>>>>>> 2bd580fd2dab5f04590a2dcb685bc9f9b1264128
+    }
+
+    @RequestMapping(value = "/api/admin/sms-setting-update", method = RequestMethod.POST)
+    @ResponseBody
+    public MyResponse updateSmsSetting(String url, String username, String password, String content) {
+        try {
+            int i = settingService.updateSms(url, username, password, content);
+            System.out.println(i);
+            return new MyResponse(200, "success", null);
+        } catch (Exception e) {
+            return new MyResponse(400, "fail", null);
+        }
+
     }
 
 
@@ -65,6 +95,7 @@ public class SystemSetController {
             return new MyResponse(200, "success", null);
         } catch (Exception e) {
             return new MyResponse(400, "fail", null);
+<<<<<<< HEAD
         }
     }
 
@@ -78,6 +109,8 @@ public class SystemSetController {
             return new MyResponse(200, "success", null);
         } else {
             return new MyResponse(400, "fail", null);
+=======
+>>>>>>> 2bd580fd2dab5f04590a2dcb685bc9f9b1264128
         }
     }
 }
