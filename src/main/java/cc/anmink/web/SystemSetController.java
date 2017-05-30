@@ -72,6 +72,28 @@ public class SystemSetController {
 
     }
 
+    @RequestMapping(value = "/api/admin/mail-setting-update", method = RequestMethod.POST)
+    @ResponseBody
+    public MyResponse updateMailSetting(String host, String port, String subject, String text, String username, String password) {
+        try {
+            int i = settingService.updateMailSetting(host, port, subject, text, username, password);
+            return new MyResponse(200, "success", null);
+        } catch (Exception e) {
+            return new MyResponse(400, "fail", null);
+        }
+    }
+
+    @RequestMapping(value = "/api/admin/setting-update", method = RequestMethod.POST)
+    @ResponseBody
+    public MyResponse updateSysSetting(String count_code, String copy_right, String description, String icp, Integer site_status) {
+        try {
+            int i = settingService.updateAllById(count_code, copy_right, description, icp, site_status, (long) 1);
+            return new MyResponse(200, "success", null);
+        } catch (Exception e) {
+            return new MyResponse(400, "fail", null);
+        }
+    }
+
 
     @RequestMapping("/api/mail-send")
     @ResponseBody

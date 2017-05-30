@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:include="admin/layout :: head"></head>
+<head th:include="admin/layout :: head (${sys_info.site_name})"></head>
 
 <body th:inline="text">
     <div id="wrapper">
@@ -80,7 +80,7 @@
                                             <div class="form-group">
                                                 <div class="col-lg-offset-1 col-lg-10">
                                                     <button class="btn btn-white" type="button">取消</button>
-                                                    <button class="btn btn-sm btn-primary" type="button">确定</button>
+                                                    <button class="btn btn-sm btn-primary" type="button" onclick="updateSetting()">确定</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -206,15 +206,15 @@
     <script th:inline="javascript">
     function updateSetting() {
         var data = $("#site-setting").serialize();
-        return false;
         $.ajax({
-            url: '',
+            url: '/api/admin/setting-update',
             type: 'POST',
             data: data,
-            success: function() {
-
+            success: function(response) {
+                console.log(response);
             }
         });
+        return false;
     }
 
     function updatePassword() {
@@ -226,12 +226,28 @@
     function updateMailSetting() {
         var data = $('#mail-setting').serialize();
         console.log(data);
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: data,
+            success: function(response) {
+                console.log(response);
+            }
+        });
         return false;
     }
 
     function updateSmsSetting() {
         var data = $('#sms-setting').serialize();
         console.log(data);
+        $.ajax({
+            url: '/api/admin/sms-setting-update',
+            type: 'POST',
+            data: data,
+            success: function(response){
+                console.log(response);
+            }
+        });
         return false;
     }
     </script>

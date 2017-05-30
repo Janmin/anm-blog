@@ -24,5 +24,5 @@ public interface SettingService {
 
     SysMailSetting getMailById();
 
-
+    int updateMailSetting(String host, String port, String subject, String text, String username, String password);
 }

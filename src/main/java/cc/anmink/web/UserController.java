@@ -1,6 +1,8 @@
 package cc.anmink.web;
 
+import cc.anmink.entity.SysSetting;
 import cc.anmink.entity.SysUser;
+import cc.anmink.service.SettingService;
 import cc.anmink.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,17 @@ import java.util.Map;
  */
 @Controller
 public class UserController {
+
+    private SysSetting sysSetting;
+
+    @Autowired
+    SettingService settingService;
+
+    @Autowired
+    public void getSetting() {
+        this.sysSetting = settingService.getById();
+    }
+
     @Autowired
     UserService userService;
 
@@ -22,6 +35,7 @@ public class UserController {
     public String user(Map map) {
         List<SysUser> sysUsers = userService.getAll();
         map.put("lists", sysUsers);
+        map.put("sys_info", sysSetting);
         return "admin/user";
     }
 

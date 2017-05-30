@@ -4,7 +4,9 @@ import cc.anmink.entity.SysAlbum;
 import cc.anmink.entity.SysAlbumPic;
 import cc.anmink.entity.SysAlbumTag;
 import cc.anmink.baseServe.MyResponse;
+import cc.anmink.entity.SysSetting;
 import cc.anmink.service.AlbumService;
+import cc.anmink.service.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,16 @@ import java.util.Map;
  */
 @Controller
 public class AlbumController {
+    private SysSetting sysSetting;
+
+    @Autowired
+    SettingService settingService;
+
+    @Autowired
+    public void getSetting() {
+        this.sysSetting = settingService.getById();
+    }
+
     @Autowired
     AlbumService albumService;
 
@@ -31,6 +43,7 @@ public class AlbumController {
     public String albumList(Map map) {
         List<SysAlbum> sysAlbums = albumService.getAll();
         map.put("lists", sysAlbums);
+        map.put("sys_info", sysSetting);
         return "admin/album-list";
     }
 
@@ -41,6 +54,7 @@ public class AlbumController {
         SysAlbum sysAlbum = albumService.getById(id);
         map.put("lists", sysAlbumPics);
         map.put("info", sysAlbum);
+        map.put("sys_info", sysSetting);
         return "admin/album-detail";
     }
 
@@ -49,6 +63,7 @@ public class AlbumController {
     public String albumCategoryList(Map map) {
         List<SysAlbumTag> sysAlbumTags = albumService.getAllTag();
         map.put("lists", sysAlbumTags);
+        map.put("sys_info", sysSetting);
         return "admin/album-tag";
     }
 
@@ -77,13 +92,13 @@ public class AlbumController {
     }
 
     //新增album tag接口
-    @RequestMapping(value = "/api/album/tag/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/api/album/tag/add", method = RequestMethod.POST)
     @ResponseBody
-    public MyResponse albumTagAdd(String name){
+    public MyResponse albumTagAdd(String name) {
         try {
             SysAlbumTag sysAlbumTag = albumService.createTag(name);
             return new MyResponse(200, "success", sysAlbumTag);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new MyResponse<Null>(400, "fail", null);
         }
     }

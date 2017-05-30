@@ -1,24 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard v.2</title>
-    <!-- maincss -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <!-- pluginscss -->
-    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="../css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
-    <link href="../css/plugins/summernote/summernote.css" rel="stylesheet">
-    <link href="../css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
-    <link href="../css/plugins/dropzone/basic.css" rel="stylesheet">
-    <link href="../css/plugins/dropzone/dropzone.css" rel="stylesheet">
-    <link href="../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-</head>
+<head th:include="admin/layout :: head (${sys_info.site_name})"></head>
 
 <body>
     <div id="wrapper">
@@ -181,26 +164,10 @@
                     </div>
                 </div>
             </div>
-            <div class="footer">
-                <div class="pull-right">
-                    10GB of <strong>250GB</strong> Free.
-                </div>
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2015
-                </div>
-            </div>
+            <div class="footer" th:include="admin/layout :: footer (${sys_info.copy_right},${sys_info.icp},${sys_info.count_code})"></div>
         </div>
     </div>
-    <!-- Mainly scripts -->
-    <script src="../js/jquery-2.1.1.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- Custom and plugin javascript -->
-    <script src="../js/inspinia.js"></script>
-    <script src="../js/plugins/pace/pace.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <div th:include="admin/layout :: script"></div>
 </body>
 
 </html>

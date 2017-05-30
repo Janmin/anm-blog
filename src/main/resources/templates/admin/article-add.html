@@ -1,131 +1,139 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:include="admin/layout :: head"></head>
+<head th:include="admin/layout :: head (${sys_info.site_name})"></head>
 
 <body>
-<div id="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation"
-         th:include="admin/layout :: nav ('article','edit')">
-    </nav>
-    <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
-                    </li>
-                    <li>
-                        <a href="login.html">
-                            <i class="fa fa-sign-out"></i>退出
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="wrapper wrapper-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>新增文章</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="form_editors.html#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="form_editors.html#">Config option 1</a>
-                                    </li>
-                                    <li><a href="form_editors.html#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation" th:include="admin/layout :: nav ('article','edit')">
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
+                        </li>
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i>退出
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>新增文章</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="form_editors.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="form_editors.html#">Config option 1</a>
+                                        </li>
+                                        <li><a href="form_editors.html#">Config option 2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ibox-content">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-lg-1 control-label">标题</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" placeholder="请输入标题" class="form-control" name="title"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-1 control-label">分类</label>
-                                    <div class="col-lg-8">
-                                        <select class="form-control m-b" name="category">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label">标签</label>
-                                    <div class="col-sm-11">
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="1"/>青春</label>
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="2"/>废话</label>
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="3"/>大笑</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label">正文</label>
-                                    <div class="col-sm-11">
-                                        <div class="summernote">
+                            <div class="ibox-content">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-1 control-label">标题</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" placeholder="请输入标题" class="form-control" id="title" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4 col-sm-offset-1">
-                                        <button class="btn btn-white" type="button">清空</button>
-                                        <button class="btn btn-primary" type="submit">保存文章</button>
+                                    <div class="form-group">
+                                        <label class="col-lg-1 control-label">分类</label>
+                                        <div class="col-lg-8">
+                                            <select class="form-control m-b" name="category">
+                                                <option th:each="category,iterStat : ${categories}" th:text="${category.name}"></option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label">标签</label>
+                                        <div class="col-sm-11">
+                                            <label class="checkbox-inline i-checks" th:each="tag,iterStat : ${tags}">
+                                                <input type="checkbox" th:value="${tag.name}" name="tag" th:text="${tag.name}" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label">正文</label>
+                                        <div class="col-sm-11">
+                                            <div class="summernote">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-1">
+                                            <button class="btn btn-white" type="button">清空</button>
+                                            <button class="btn btn-primary" type="submit">保存文章</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="footer" th:include="admin/layout :: footer (${sys_info.copy_right},${sys_info.icp},${sys_info.count_code})"></div>
         </div>
-        <div class="footer"
-             th:include="admin/layout :: footer (${setting.copy_right},${setting.icp},${setting.count_code})"></div>
     </div>
-</div>
-<div th:include="admin/layout :: script"></div>
-<!-- summernote -->
-<script th:src="@{/js/plugins/summernote/summernote.js}"></script>
-<!-- iCheck -->
-<script th:src="@{/js/plugins/iCheck/icheck.min.js}"></script>
-<script>
-    $(document).ready(function () {
+    <div th:include="admin/layout :: script"></div>
+    <!-- summernote -->
+    <script th:src="@{/js/plugins/summernote/summernote.js}"></script>
+    <!-- iCheck -->
+    <script th:src="@{/js/plugins/iCheck/icheck.min.js}"></script>
+    <script>
+    $(document).ready(function() {
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
 
-        $("form").submit(function (e) {
+        $("form").submit(function(e) {
             e.preventDefault();
             var data = {
                 title: $('#title').val(),
                 category: $('select').val(),
-                content: $('.summernote').val()
+                caption_pic: '',
+                content: $('.summernote').summernote('code')
             };
+            var tag = [];
+            $("input[name='tag']:checked").each(function() {
+                tag.push(this.value);
+            })
+
+            data.tag = JSON.stringify(tag);
             console.log(data);
+
+            $.ajax({
+                url: '/api/article/add',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    console.log(response);
+                }
+            });
         });
 
         $('.summernote').summernote({
             'height': 300,
             callbacks: {
-                onImageUpload: function (files, editor, welEditable) {
+                onImageUpload: function(files, editor, welEditable) {
                     uploadFile(files[0], editor, welEditable);
                 }
             }
@@ -143,12 +151,12 @@
             cache: false,
             contentType: false,
             processData: false,
-            success: function (url) {
+            success: function(url) {
                 $('.summernote').summernote('insertImage', url, '插入图片');
             }
         });
     }
-</script>
+    </script>
 </body>
 
 </html>

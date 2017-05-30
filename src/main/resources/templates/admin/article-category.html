@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:include="admin/layout :: head"></head>
+<head th:include="admin/layout :: head (${sys_info.site_name})"></head>
 
 <body>
 <div id="wrapper">
@@ -89,21 +89,13 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2015
-            </div>
-        </div>
+        <div class="footer" th:include="admin/layout :: footer (${sys_info.copy_right},${sys_info.icp},${sys_info.count_code})"></div>
     </div>
 </div>
 <div th:include="admin/layout :: script"></div>
 <script>
     function add_category() {
-        $('#cate_name').val();
-        $.post("http://localhost:8080/admin/article/category/add", {name: $('#cate_name').val()}, function (res) {
+        $.post("/api/article/category/add", {name: $('#cate_name').val()}, function (res) {
             console.log(res);
             window.location.reload();
         });

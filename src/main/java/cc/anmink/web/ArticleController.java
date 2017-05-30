@@ -56,6 +56,7 @@ public class ArticleController {
     @RequestMapping("/admin/article/list")
     public String articles(Map map) {
         List<SysArticle> sysArtices = articleService.getAll();
+        map.put("sys_info", sysSetting);
         map.put("lists", sysArtices);
         return "admin/article-list";
     }
@@ -64,6 +65,7 @@ public class ArticleController {
     @RequestMapping("/admin/article/edit")
     public String edit(Long id, Map map) {
         List<SysArticle> sysArtices = articleService.getById(id);
+        map.put("sys_info", sysSetting);
         map.put("article", sysArtices.get(0));
         return "admin/article-detail";
     }
@@ -72,11 +74,12 @@ public class ArticleController {
     @RequestMapping("/admin/article/category/list")
     public String getCategory(Map map) {
         List<SysArticleCategory> sysArticleCategories = articleService.getAllCategory();
+        map.put("sys_info", sysSetting);
         map.put("lists", sysArticleCategories);
         return "admin/article-category";
     }
 
-    @RequestMapping("/admin/article/category/add")
+    @RequestMapping("/api/article/category/add")
     @ResponseBody
     public MyResponse addArticleCategory(String name) {
         try {
@@ -92,6 +95,7 @@ public class ArticleController {
     public String articleTagList(Map map) {
         List<SysArticleTag> sysArticleTags = articleService.getAllTag();
         map.put("lists", sysArticleTags);
+        map.put("sys_info", sysSetting);
         return "admin/article-tag";
     }
 
@@ -121,7 +125,11 @@ public class ArticleController {
 
     @RequestMapping("/admin/article/add")
     public String articleAdd(Map map) {
-        map.put("setting", this.sysSetting);
+        List<SysArticleCategory> sysArticleCategories = articleService.getAllCategory();
+        List<SysArticleTag> sysArticleTags = articleService.getAllTag();
+        map.put("categories", sysArticleCategories);
+        map.put("tags", sysArticleTags);
+        map.put("sys_info", this.sysSetting);
         return "admin/article-add";
     }
 

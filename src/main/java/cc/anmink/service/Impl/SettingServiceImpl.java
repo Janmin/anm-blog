@@ -56,4 +56,9 @@ public class SettingServiceImpl implements SettingService {
         return sysMailSettingRepoitory.findById((long) 1);
     }
 
+    @Override
+    public int updateMailSetting(String host, String port, String subject, String text, String username, String password) {
+        return sysMailSettingRepoitory.updateAllById(host, port, subject, text, username, password, (long) 1);
+    }
+
 }
