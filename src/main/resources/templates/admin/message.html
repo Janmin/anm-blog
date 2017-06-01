@@ -112,11 +112,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>宝石般的笑容</td>
-                                                <td>冬去春又来</td>
-                                                <td>baoshi@qq.com</td>
-                                                <td>Jul 14, 2013</td>
+                                            <tr th:each="list,iterStat : ${lists}">
+                                                <td th:text="${list.user_id}">宝石般的笑容</td>
+                                                <td th:text="${list.article_id}">冬去春又来</td>
+                                                <td th:text="${list.content}">baoshi@qq.com</td>
+                                                <td th:text="${#dates.format(list.created,'yyyy/MM/dd HH:mm')}">Jul 14, 2013</td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <button class="btn btn-danger btn-xs" type="button">删除</button>
