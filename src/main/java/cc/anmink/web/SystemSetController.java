@@ -1,5 +1,6 @@
 package cc.anmink.web;
 
+import apple.laf.JRSUIConstants;
 import cc.anmink.baseServe.MyRequest;
 import cc.anmink.baseServe.MyMailSend;
 import cc.anmink.baseServe.MyResponse;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.Map;
 
 /**
@@ -108,5 +110,23 @@ public class SystemSetController {
         } catch (Exception e) {
             return new MyResponse(400, "fail", null);
         }
+    }
+
+    @RequestMapping("/api/test")
+    @ResponseBody
+    public Integer[] test() {
+        Integer size = 5;
+        Integer[] arrays = new Integer[size];
+        arrays[0] = 0;
+        arrays[1] = 1;
+        arrays[2] = 2;
+        arrays[3] = 3;
+        arrays[4] = 4;
+        int total = 0;
+        for (int i = 0; i < size; i++) {
+            total += arrays[i];
+        }
+        System.out.println("总和为： " + total);
+        return arrays;
     }
 }
