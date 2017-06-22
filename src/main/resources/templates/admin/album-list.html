@@ -4,151 +4,156 @@
 <head th:include="admin/layout :: head (${sys_info.site_name})"></head>
 
 <body>
-    <div id="wrapper">
-        <nav class="navbar-default navbar-static-side" role="navigation" th:include="admin/layout :: nav ('album','list')">
-        </nav>
-        <!-- suspend -->
-        <div id="page-wrapper" class="gray-bg">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                    <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
-                        </li>
-                        <li>
-                            <a href="login.html">
-                                <i class="fa fa-sign-out"></i>退出
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="wrapper wrapper-content">
-                <div class="row">
-                    <div class="col-md-3" th:each="list,iterStat : ${lists}">
-                        <div class="ibox">
-                            <div class="ibox-content product-box">
-                                <div class="product-imitation">
-                                    <img alt="image" class="img-responsive" src="http://pan.anmink.cc/data/f_79935704.jpg" />
-                                </div>
-                                <div class="product-desc">
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="admin/layout :: nav ('album','list')">
+    </nav>
+    <!-- suspend -->
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">欢迎登录</span>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i>退出
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-md-3" th:each="list,iterStat : ${lists}">
+                    <div class="ibox">
+                        <div class="ibox-content product-box">
+                            <div class="product-imitation">
+                                <img alt="image" class="img-responsive" src="http://wx2.sinaimg.cn/mw1024/006eClU9gy1fgu4f5645bj30rs0fn3yr.jpg"/>
+                            </div>
+                            <div class="product-desc">
                                     <span class="product-price" th:text="${list.name}">
                                     冬去春又至
                                 </span>
-                                    <small class="text-muted" th:text="${list.tags}">标签1</small>
-                                    <div class="small m-t-xs" th:text="${list.intro}">
-                                        这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
-                                    </div>
-                                    <div class="m-t text-righ">
-                                        <a th:href="@{/admin/album/detail?id=} + ${list.id}" class="btn btn-xs btn-outline btn-primary">打开 <i
+                                <small class="text-muted" th:text="${list.tags}">标签1</small>
+                                <div class="small m-t-xs" th:text="${list.intro}">
+                                    这年的冬天总算去了，春天也是如约而至，此时此刻，又有……
+                                </div>
+                                <div class="m-t text-righ">
+                                    <a th:href="@{/admin/album/detail?id=} + ${list.id}"
+                                       class="btn btn-xs btn-outline btn-primary">打开 <i
                                             class="fa fa-folder-open-o"></i> </a>
-                                        <a th:onclick="'editAlbum('+ ${list.id} +')'" class="btn btn-xs btn-outline btn-success">编辑
+                                    <a th:onclick="'editAlbum('+ ${list.id} +')'"
+                                       class="btn btn-xs btn-outline btn-success">编辑
                                         <i class="fa fa-pencil-square-o"></i> </a>
-                                        <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i
+                                    <a href="#" class="btn btn-xs btn-outline btn-danger">删除 <i
                                             class="fa fa-trash-o"></i> </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Large Modal</button> -->
                 </div>
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Large Modal</button> -->
             </div>
-            <div id="small-chat">
-                <!-- <span class="badge badge-warning pull-right">5</span> -->
-                <a class="open-small-chat" data-toggle="modal" data-target="#addAlbum">
-                    <i class="fa fa-plus"></i>
-                </a>
-            </div>
-            <!-- modal -->
-            <div class="modal inmodal fade" id="addAlbum" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">新建相册</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">相册名称</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="add-name" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">相册简介</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="add-intro" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">相册标签</label>
-                                    <div class="col-sm-10">
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option1" class="add-in" />青春</label>
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option2" class="add-in" />废话</label>
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option3" class="add-in" />大笑</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" onclick="addAlbum()">保存</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- modal -->
-            <div class="modal inmodal fade" id="editAlbum" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">编辑相册</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">相册名称</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="edit-name" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">相册简介</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="edit-intro" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">相册标签</label>
-                                    <div class="col-sm-10">
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option1" class="edit-in" />青春</label>
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option2" class="edit-in" />废话</label>
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option3" class="edit-in" />大笑</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary">保存</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- modal -->
-            <div class="footer" th:include="admin/layout :: footer (${sys_info.copy_right},${sys_info.icp},${sys_info.count_code})"></div>
         </div>
+        <div id="small-chat">
+            <!-- <span class="badge badge-warning pull-right">5</span> -->
+            <a class="open-small-chat" data-toggle="modal" data-target="#addAlbum">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <!-- modal -->
+        <div class="modal inmodal fade" id="addAlbum" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+                        <h4 class="modal-title">新建相册</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">相册名称</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="add-name"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">相册简介</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="add-intro"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">相册标签</label>
+                                <div class="col-sm-10">
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox" value="option1" class="add-in"/>青春</label>
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox" value="option2" class="add-in"/>废话</label>
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox" value="option3" class="add-in"/>大笑</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick="addAlbum()">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+        <div class="modal inmodal fade" id="editAlbum" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                class="sr-only">Close</span></button>
+                        <h4 class="modal-title">编辑相册</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">相册名称</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="edit-name"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">相册简介</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="edit-intro"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">相册标签</label>
+                                <div class="col-sm-10">
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox" value="option1" class="edit-in"/>青春</label>
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox" value="option2" class="edit-in"/>废话</label>
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox" value="option3" class="edit-in"/>大笑</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+        <div class="footer"
+             th:include="admin/layout :: footer (${sys_info.copy_right},${sys_info.icp},${sys_info.count_code})"></div>
     </div>
-    <script type="text/javascript">
+</div>
+<script type="text/javascript">
     function addAlbum() {
         var tags = $(".add-in").val();
         var data = {
@@ -156,15 +161,22 @@
             intro: $("#add-intro").val(),
             tags: tags
         }
-        console.log(data);
+        $.ajax({
+            url: '/api/album/add',
+            type: 'POST',
+            data: data,
+            success: function (response) {
+                console.log(response)
+            }
+        })
     }
 
     function editAlbum(id) {
         $('#editAlbum').modal("show");
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/api/album/get?id=" + id,
-            success: function(data) {
+            url: "/api/album/get?id=" + id,
+            success: function (data) {
                 $("#edit-name").val(data.data.name);
                 $("#edit-intro").val(data.data.intro);
             }
@@ -176,23 +188,23 @@
             type: "POST",
             url: "",
             data: {},
-            success: function(data) {
+            success: function (data) {
                 console.log(data)
             }
         });
     }
-    </script>
-    <div th:include="admin/layout :: script"></div>
-    <!-- iCheck -->
-    <script th:src="@{/js/plugins/iCheck/icheck.min.js}"></script>
-    <script>
-    $(document).ready(function() {
+</script>
+<div th:include="admin/layout :: script"></div>
+<!-- iCheck -->
+<script th:src="@{/js/plugins/iCheck/icheck.min.js}"></script>
+<script>
+    $(document).ready(function () {
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
     });
-    </script>
+</script>
 </body>
 
 </html>

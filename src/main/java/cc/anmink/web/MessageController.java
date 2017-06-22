@@ -1,5 +1,6 @@
 package cc.anmink.web;
 
+import cc.anmink.entity.Message;
 import cc.anmink.entity.SysMessage;
 import cc.anmink.entity.SysSetting;
 import cc.anmink.service.MessageService;
