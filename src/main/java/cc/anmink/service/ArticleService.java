@@ -20,10 +20,13 @@ public interface ArticleService {
     List<SysArticle> getAll();
 
     //新建文章
-    SysArticle create(String title, String caption_pic, String content, String category, String tag);
+    SysArticle create(String title, String caption_pic, String content, SysArticleCategory category, String tag);
 
     //根据Id获取分类记录
     SysArticleCategory getCategoryById(Long id);
+
+    //根据id获取对应的tag
+    String getTagById(Long id);
 
     //获取全部分类
     List<SysArticleCategory> getAllCategory();
@@ -39,4 +42,7 @@ public interface ArticleService {
 
     //根据id删除标签
     SysArticleTag deleteTagById(Long id);
+
+    //更新文章
+    int updateAll(String title, String caption_pic, String content, SysArticleCategory category, String tag, Long id);
 }

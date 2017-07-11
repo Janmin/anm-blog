@@ -42,6 +42,8 @@ public class AlbumController {
     @RequestMapping("/admin/album/list")
     public String albumList(Map map) {
         List<SysAlbum> sysAlbums = albumService.getAll();
+        List<SysAlbumTag> sysAlbumTags = albumService.getAllTag();
+        map.put("tags", sysAlbumTags);
         map.put("lists", sysAlbums);
         map.put("sys_info", sysSetting);
         return "admin/album-list";

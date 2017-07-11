@@ -44,8 +44,9 @@ public class AlbumServiceImpl implements AlbumService {
         return sysAlbumRepoitory.findById(id);
     }
 
+
     @Override
-    public SysAlbumPic create(String link, Long album) {
+    public SysAlbumPic createPic(String link, SysAlbum album) {
         Long timestamp = System.currentTimeMillis();
         return sysAlbumPicRepoitory.save(new SysAlbumPic(link,album,timestamp));
     }

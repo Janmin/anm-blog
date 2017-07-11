@@ -1,7 +1,6 @@
 package cc.anmink.service.Impl;
 
 import cc.anmink.dao.SysMessageRepoitory;
-import cc.anmink.entity.Message;
 import cc.anmink.entity.SysMessage;
 import cc.anmink.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;

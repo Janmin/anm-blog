@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.constraints.Null;
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 
@@ -46,8 +47,11 @@ public class ArticleController {
     //新增文章API
     @RequestMapping(value = "/api/article/add", method = RequestMethod.POST)
     @ResponseBody
-    public MyResponse add(String title, String caption_pic, String content, String category, String tag) {
-        SysArticle sysArtices = articleService.create(title, caption_pic, content, category, tag);
+    public MyResponse add(String title, String caption_pic, String content, Long category_id, String tag) {
+
+        SysArticleCategory sysArticleCategory = articleService.getCategoryById(category_id);
+
+        SysArticle sysArtices = articleService.create(title, caption_pic, content, sysArticleCategory, tag);
         MyResponse json = new MyResponse<SysArticle>(200, "success", sysArtices);
         return json;
     }
@@ -65,9 +69,25 @@ public class ArticleController {
     @RequestMapping("/admin/article/edit")
     public String edit(Long id, Map map) {
         List<SysArticle> sysArtices = articleService.getById(id);
+        List<SysArticleCategory> sysArticleCategories = articleService.getAllCategory();
+        List<SysArticleTag> sysArticleTags = articleService.getAllTag();
+        map.put("tags", sysArticleTags);
+        map.put("categories", sysArticleCategories);
+        map.put("id", id);
         map.put("sys_info", sysSetting);
         map.put("article", sysArtices.get(0));
         return "admin/article-detail";
+    }
+
+    @RequestMapping("/api/article/tag/detail")
+    @ResponseBody
+    public String[] getArticleTag(Long id) {
+        String tag = articleService.getTagById(id);
+        tag = tag.replace("[", "");
+        tag = tag.replace("]", "");
+        tag = tag.replace("\"", "");
+        String[] arrays = tag.split(",");
+        return arrays;
     }
 
     //后台文章分类管理页面Controller
@@ -133,20 +153,17 @@ public class ArticleController {
         return "admin/article-add";
     }
 
-
-    @RequestMapping("/admin/test")
+    @RequestMapping(value = "/api/article/edit", method = RequestMethod.POST)
     @ResponseBody
-    public int getSetting(String count_code, String copy_right, String description, String icp, Integer site_status) {
-        // SysSetting sysSetting = baseService.getById();
-        // return sysSetting;
-        return settingService.updateAllById(count_code, copy_right, description, icp, site_status, (long) 1);
-    }
-
-
-    @RequestMapping("/admin/test2")
-    @ResponseBody
-    public void hello() {
-        String j = String.valueOf(ClassLoader.getSystemResource("../"));
-        System.out.println(j);
+    public MyResponse doEdit(String title, String caption_pic, String content, Long category_id, String tag, Long id) {
+        SysArticleCategory sysArticleCategory = articleService.getCategoryById(category_id);
+        try {
+            Integer integer = articleService.updateAll(title, caption_pic, content, sysArticleCategory, tag, id);
+            MyResponse json = new MyResponse<>(200, "success", null);
+            return json;
+        } catch (Exception e) {
+            MyResponse json = new MyResponse<>(400, "fail", null);
+            return json;
+        }
     }
 }

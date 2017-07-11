@@ -1,8 +1,6 @@
 package cc.anmink.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Jamin on 2017/3/19.
@@ -13,13 +11,14 @@ public class SysAlbumPic {
     @GeneratedValue
     private Long id;
     private String link;
-    private Long album;
+    @ManyToOne
+    private SysAlbum album;
     private Long created;
 
     public SysAlbumPic() {
     }
 
-    public SysAlbumPic(String link, Long album, Long created) {
+    public SysAlbumPic(String link, SysAlbum album, Long created) {
         this.link = link;
         this.album = album;
         this.created = created;
@@ -41,11 +40,11 @@ public class SysAlbumPic {
         this.link = link;
     }
 
-    public Long getAlbum() {
+    public SysAlbum getAlbum() {
         return album;
     }
 
-    public void setAlbum(Long album) {
+    public void setAlbum(SysAlbum album) {
         this.album = album;
     }
 

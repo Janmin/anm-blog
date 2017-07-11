@@ -2,7 +2,15 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:include="admin/layout :: head (${sys_info.site_name})"></head>
-
+<style>
+    a input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+</style>
 <body>
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" th:include="admin/layout :: nav ('album','list')">
@@ -29,7 +37,8 @@
                     <div class="ibox">
                         <div class="ibox-content product-box">
                             <div class="product-imitation">
-                                <img alt="image" class="img-responsive" src="http://wx2.sinaimg.cn/mw1024/006eClU9gy1fgu4f5645bj30rs0fn3yr.jpg"/>
+                                <img alt="image" class="img-responsive"
+                                     src="http://wx2.sinaimg.cn/mw1024/006eClU9gy1fgu4f5645bj30rs0fn3yr.jpg"/>
                             </div>
                             <div class="product-desc">
                                     <span class="product-price" th:text="${list.name}">
@@ -86,14 +95,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">相册封面</label>
+                                <div class="col-sm-10">
+                                    <a class="btn btn-default"><input type="file"/>选择图片</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">相册标签</label>
                                 <div class="col-sm-10">
-                                    <label class="checkbox-inline i-checks">
-                                        <input type="checkbox" value="option1" class="add-in"/>青春</label>
-                                    <label class="checkbox-inline i-checks">
-                                        <input type="checkbox" value="option2" class="add-in"/>废话</label>
-                                    <label class="checkbox-inline i-checks">
-                                        <input type="checkbox" value="option3" class="add-in"/>大笑</label>
+                                    <label class="checkbox-inline i-checks" th:each="tag,iterStat : ${tags}">
+                                        <input type="checkbox" th:value="${tag.name}" name="tag"
+                                               th:text="${tag.name}"/></label>
                                 </div>
                             </div>
                         </form>
@@ -129,14 +141,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">相册封面</label>
+                                <div class="col-sm-10">
+                                    <a class="btn btn-default"><input type="file"/>选择图片</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">相册标签</label>
                                 <div class="col-sm-10">
-                                    <label class="checkbox-inline i-checks">
-                                        <input type="checkbox" value="option1" class="edit-in"/>青春</label>
-                                    <label class="checkbox-inline i-checks">
-                                        <input type="checkbox" value="option2" class="edit-in"/>废话</label>
-                                    <label class="checkbox-inline i-checks">
-                                        <input type="checkbox" value="option3" class="edit-in"/>大笑</label>
+                                    <label class="checkbox-inline i-checks" th:each="tag,iterStat : ${tags}">
+                                        <input type="checkbox" th:value="${tag.name}" name="tag"
+                                               th:text="${tag.name}"/></label>
                                 </div>
                             </div>
                         </form>
@@ -155,12 +170,16 @@
 </div>
 <script type="text/javascript">
     function addAlbum() {
-        var tags = $(".add-in").val();
+        var tags = [];
+        $("input[name='tag']:checked").each(function () {
+            tags.push(this.value);
+        })
         var data = {
             name: $("#add-name").val(),
             intro: $("#add-intro").val(),
             tags: tags
         }
+        console.log(data)
         $.ajax({
             url: '/api/album/add',
             type: 'POST',

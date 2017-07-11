@@ -22,7 +22,7 @@ public interface AlbumService {
     SysAlbum getById(Long id);
 
     //新增照片
-    SysAlbumPic create(String link, Long album);
+    SysAlbumPic createPic(String link, SysAlbum album);
 
     //根据album_id获取照片
     List<SysAlbumPic> getByAlbum(Long album);

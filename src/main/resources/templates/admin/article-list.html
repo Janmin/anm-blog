@@ -71,12 +71,12 @@
                                     <tr th:each="list,iterStat : ${lists}">
                                         <td th:text="${list.id}">1</td>
                                         <td th:text="${list.title}">默认</td>
-                                        <td th:text="${list.category}">20</td>
+                                        <td th:text="${list.category.name}">20</td>
                                         <td th:text="${#dates.format(list.created,'yyyy/MM/dd HH:mm')}">Jul 14, 2013
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <button class="btn btn-white btn-xs" type="button">编辑</button>
+                                                <a class="btn btn-white btn-xs" th:href="@{'/admin/article/edit?id='+${list.id}}">编辑</a>
                                                 <button class="btn btn-primary btn-xs" type="button">删除</button>
                                             </div>
                                         </td>

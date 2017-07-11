@@ -3,6 +3,7 @@ package cc.anmink.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by Jamin on 2017/3/11.
@@ -15,14 +16,15 @@ public class SysArticle {
     private String title;
     private String caption_pic;
     private String content;
-    private String category;
+    @ManyToOne
+    private SysArticleCategory category;
     private String tag;
     private Long created;
 
     public SysArticle() {
     }
 
-    public SysArticle(String title, String caption_pic, String content, String category, String tag, Long created) {
+    public SysArticle(String title, String caption_pic, String content, SysArticleCategory category, String tag, Long created) {
         this.title = title;
         this.caption_pic = caption_pic;
         this.content = content;
@@ -47,11 +49,11 @@ public class SysArticle {
         this.content = content;
     }
 
-    public String getCategory() {
+    public SysArticleCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(SysArticleCategory category) {
         this.category = category;
     }
 

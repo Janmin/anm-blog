@@ -37,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public SysArticle create(String title, String caption_pic, String content, String category, String tag) {
+    public SysArticle create(String title, String caption_pic, String content, SysArticleCategory category, String tag) {
         Long timestamp = System.currentTimeMillis();
         return sysArticleRepository.save(new SysArticle(title, caption_pic, content, category, tag, timestamp));
     }
@@ -46,6 +46,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public SysArticleCategory getCategoryById(Long id) {
         return sysArticleCategoryRepoitory.findById(id);
+    }
+
+    @Override
+    public String getTagById(Long id) {
+        return sysArticleRepository.findTagById(id);
     }
 
     @Override
@@ -75,5 +80,10 @@ public class ArticleServiceImpl implements ArticleService {
         SysArticleTag sysArticleTag = sysArticleTagRepoitory.findById(id);
         sysArticleTagRepoitory.delete(sysArticleTag);
         return sysArticleTag;
+    }
+
+    @Override
+    public int updateAll(String title, String caption_pic, String content, SysArticleCategory category, String tag, Long id) {
+        return sysArticleRepository.updateAll(title, caption_pic, content, category, tag, id);
     }
 }

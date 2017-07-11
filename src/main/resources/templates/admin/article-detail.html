@@ -51,29 +51,24 @@
                                 <div class="form-group">
                                     <label class="col-lg-1 control-label">标题</label>
                                     <div class="col-lg-8">
-                                        <input type="text" placeholder="请输入标题" class="form-control" th:value="${article.title}"/>
+                                        <input type="text" placeholder="请输入标题" class="form-control" id="title" th:value="${article.title}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-1 control-label">分类</label>
                                     <div class="col-lg-8">
-                                        <select class="form-control m-b" name="account">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
+                                        <select class="form-control m-b" name="account" >
+                                            <option th:each="category,iterStat : ${categories}" th:text="${category.name}" th:value="${category.id}" th:if="${article.category.name == category.name}" th:selected="selected">1</option>
+                                            <option th:each="category,iterStat : ${categories}" th:text="${category.name}" th:value="${category.id}" th:unless="${article.category.name == category.name}">1</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">标签</label>
                                     <div class="col-sm-11">
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option1"/>青春</label>
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option2"/>废话</label>
-                                        <label class="checkbox-inline i-checks">
-                                            <input type="checkbox" value="option3"/>大笑</label>
+                                        <label class="checkbox-inline i-checks" th:each="tag,iterStat : ${tags}">
+                                            <input type="checkbox" th:value="${tag.name}" name="tag"
+                                                   th:text="${tag.name}" /></label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -85,7 +80,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-1">
-                                        <button class="btn btn-white" type="submit">清空</button>
+                                        <button class="btn btn-white" type="button">清空</button>
                                         <button class="btn btn-primary" type="submit">保存文章</button>
                                     </div>
                                 </div>
@@ -115,11 +110,39 @@
 </script>
 <!-- iCheck -->
 <script th:src="@{/js/plugins/iCheck/icheck.min.js}"></script>
-<script>
+<script th:inline="javascript">
     $(document).ready(function () {
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
+        });
+        getTags();
+
+        $("form").submit(function (e) {
+            e.preventDefault();
+            var data = {
+                id: [[${id}]],
+                title: $('#title').val(),
+                category_id: $('select').val(),
+                caption_pic: '',
+                content: $('.summernote').summernote('code')
+            };
+            var tag = [];
+            $("input[name='tag']:checked").each(function () {
+                tag.push(this.value);
+            })
+
+            data.tag = JSON.stringify(tag);
+            console.log(data);
+
+            $.ajax({
+                url: '/api/article/edit',
+                type: 'POST',
+                data: data,
+                success: function (response) {
+                    console.log(response);
+                }
+            });
         });
     });
 
@@ -136,6 +159,23 @@
             processData: false,
             success: function (url) {
                 $('.summernote').summernote('insertImage', url, '插入图片');
+            }
+        });
+    }
+
+    function getTags() {
+        $.ajax({
+            url: "/api/article/tag/detail?id=1",
+            type: "GET",
+            success: function(response){
+                console.log(response)
+                $("input[name='tag']").each(function () {
+                    console.log(this.value)
+                    if(response.includes(this.value)) {
+                        $(this).attr("checked","checked")
+                        $(this).parent().addClass("checked")
+                    }
+                })
             }
         });
     }

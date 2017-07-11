@@ -1,6 +1,5 @@
 package cc.anmink.service;
 
-import cc.anmink.entity.Message;
 import cc.anmink.entity.SysMessage;
 import org.springframework.stereotype.Repository;
 
